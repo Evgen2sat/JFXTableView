@@ -2,6 +2,7 @@ package em.libs.jfxtableview.jfxSimpleDialogBox;
 
 import com.jfoenix.controls.JFXButton;
 import em.libs.jfxtableview.Constants;
+import em.libs.jfxtableview.Messages;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import em.libs.jfxtableview.jfxDialogBox.JFXDialogBox;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class JFXSimpleDialogBox extends JFXDialogBox {
 
-    protected final JFXButton btnOk = new JFXButton(Constants.OK);
+    protected final JFXButton btnOk = new JFXButton(Messages.getString("OK"));
 
     protected JFXSimpleDialogBox() {
         super();

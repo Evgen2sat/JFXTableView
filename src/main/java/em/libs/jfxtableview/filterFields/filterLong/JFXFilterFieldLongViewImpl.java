@@ -1,6 +1,7 @@
 package em.libs.jfxtableview.filterFields.filterLong;
 
 import em.libs.jfxtableview.JFXTableView;
+import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.columns.JFXLongTableColumn;
 import em.libs.jfxtableview.enums.FilterModeEnum;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
@@ -37,7 +38,7 @@ public class JFXFilterFieldLongViewImpl<T> extends JFXFilterFieldLongViewDesigne
     public void updateFilterField() {
         if(currentFilterType == FilterTypeEnum.SETTING_FILTERING) {
             if(!settingFilterView.checkErrors()) {
-                applyChangeFilterType(SETTING_FILTERING_ICON, SETTING_FILTERING, FilterTypeEnum.SETTING_FILTERING,
+                applyChangeFilterType(SETTING_FILTERING_ICON, Messages.getString("SETTING_FILTERING"), FilterTypeEnum.SETTING_FILTERING,
                         settingFilterView.getFilterMode(), settingFilterView.getFilteringValues());
             }
 
@@ -65,7 +66,7 @@ public class JFXFilterFieldLongViewImpl<T> extends JFXFilterFieldLongViewDesigne
                 try {
                     filterValue = Long.valueOf(resultText);
                 } catch (Exception e) {
-                    setError(LONG_VALUE_FROM_TO_ERROR);
+                    setError(Messages.getString("LONG_VALUE_FROM_TO_ERROR"));
                     return;
                 }
             }
@@ -182,11 +183,11 @@ public class JFXFilterFieldLongViewImpl<T> extends JFXFilterFieldLongViewDesigne
                     return;
                 }
 
-                applyChangeFilterType(SETTING_FILTERING_ICON, SETTING_FILTERING, FilterTypeEnum.SETTING_FILTERING,
+                applyChangeFilterType(SETTING_FILTERING_ICON, Messages.getString("SETTING_FILTERING"), FilterTypeEnum.SETTING_FILTERING,
                         settingFilterView.getFilterMode(), settingFilterView.getFilteringValues());
             }
         });
 
-        dialogBox.show(((JFXTableView<T>) (column.getTableView())).getBG(), 510, -1, SETTINGS_FILTERING + column.getColumnName());
+        dialogBox.show(((JFXTableView<T>) (column.getTableView())).getBG(), 510, -1, Messages.getString("SETTINGS_FILTERING") + column.getColumnName());
     }
 }

@@ -2,6 +2,7 @@ package em.libs.jfxtableview.filterFields.filterInteger;
 
 import com.jfoenix.validation.base.ValidatorBase;
 import em.libs.jfxtableview.Constants;
+import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.filterFields.JFXSettingFilterViewDesigner;
 import em.libs.jfxtableview.models.FilterModel;
 import em.libs.jfxtableview.models.FilterSettingModel;
@@ -25,14 +26,14 @@ public abstract class JFXSettingFilterIntegerViewDesigner extends JFXSettingFilt
 
     @Override
     protected Node initFilterValueControl(FilterModel filter) {
-        RequiredFilteredComboBoxValidator requiredFcbItemValidator = new RequiredFilteredComboBoxValidator(Constants.REQUIRED_FIELD_ERROR);
-        IntegerRangeValidator valueIntegerRangeValidator = new IntegerRangeValidator(Constants.INTEGER_VALUE_FROM_TO_ERROR);
+        RequiredFilteredComboBoxValidator requiredFcbItemValidator = new RequiredFilteredComboBoxValidator(Messages.getString("REQUIRED_FIELD_ERROR"));
+        IntegerRangeValidator valueIntegerRangeValidator = new IntegerRangeValidator(Messages.getString("INTEGER_VALUE_FROM_TO_ERROR"));
         existErrorsChecker.addValidators(requiredFcbItemValidator, valueIntegerRangeValidator);
 
         FilteredJFXComboBoxWithClear<Integer> fcbItem = new FilteredJFXComboBoxWithClear<>();
         fcbItem.setPrefWidth(200);
         fcbItem.setMaxWidth(200);
-        fcbItem.setPromptText(Constants.VALUE);
+        fcbItem.setPromptText(Messages.getString("VALUE"));
         fcbItem.setObservableList(items);
         fcbItem.getValidators().addAll(requiredFcbItemValidator, valueIntegerRangeValidator);
         fcbItem.validate();

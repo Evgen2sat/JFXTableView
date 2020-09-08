@@ -33,7 +33,7 @@ public class FilteredJFXComboBoxWithClear<T> extends BorderPane {
         lblClear.setFont(new FontAwesome(14).getFontSolid());
         lblClear.setStyle("-fx-text-fill: TRANSPARENT");
         lblClear.setOnMouseClicked(this::lblClear_onMouseClicked);
-        lblClear.setTooltip(new Tooltip(Constants.CLEAR_FIELD));
+        lblClear.setTooltip(new Tooltip(Messages.getString("CLEAR_FIELD")));
         lblClear.getTooltip().setStyle(TOOLTIP_STYLE);
         lblClear.setCursor(Cursor.HAND);
 

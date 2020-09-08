@@ -1,6 +1,7 @@
 package em.libs.jfxtableview.filterFields.filterString;
 
 import com.jfoenix.validation.base.ValidatorBase;
+import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.filterFields.JFXSettingFilterViewDesigner;
 import em.libs.jfxtableview.models.FilterModel;
 import em.libs.jfxtableview.models.FilterSettingModel;
@@ -13,9 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static em.libs.jfxtableview.Constants.REQUIRED_FIELD_ERROR;
-import static em.libs.jfxtableview.Constants.VALUE;
-
 public abstract class JFXSettingFilterStringViewDesigner extends JFXSettingFilterViewDesigner<String> {
     private Map<FilteredJFXComboBoxWithClear<String>, List<ValidatorBase>> validatorsMap;
 
@@ -25,13 +23,13 @@ public abstract class JFXSettingFilterStringViewDesigner extends JFXSettingFilte
 
     @Override
     protected Node initFilterValueControl(FilterModel filter) {
-        RequiredFilteredComboBoxValidator requiredFcbItemValidator = new RequiredFilteredComboBoxValidator(REQUIRED_FIELD_ERROR);
+        RequiredFilteredComboBoxValidator requiredFcbItemValidator = new RequiredFilteredComboBoxValidator(Messages.getString("REQUIRED_FIELD_ERROR"));
         existErrorsChecker.addValidators(requiredFcbItemValidator);
 
         FilteredJFXComboBoxWithClear<String> fcbItem = new FilteredJFXComboBoxWithClear<>();
         fcbItem.setPrefWidth(200);
         fcbItem.setMaxWidth(200);
-        fcbItem.setPromptText(VALUE);
+        fcbItem.setPromptText(Messages.getString("VALUE"));
         fcbItem.setObservableList(items);
         fcbItem.getValidators().add(requiredFcbItemValidator);
         fcbItem.validate();

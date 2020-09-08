@@ -1,13 +1,14 @@
 package em.libs.jfxtableview.enums;
 
 import em.libs.jfxtableview.Constants;
+import em.libs.jfxtableview.Messages;
 
 public enum TotalTypeEnum {
-    AMOUNT(Constants.AMOUNT),
-    AVERAGE(Constants.AVERAGE),
-    MINIMUM(Constants.MINIMUM),
-    MAXIMUM(Constants.MAXIMUM),
-    SUM(Constants.SUM);
+    AMOUNT(Messages.getString("AMOUNT")),
+    AVERAGE(Messages.getString("AVERAGE")),
+    MINIMUM(Messages.getString("MINIMUM")),
+    MAXIMUM(Messages.getString("MAXIMUM")),
+    SUM(Messages.getString("SUM"));
 
     private final String text;
 

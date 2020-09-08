@@ -1,11 +1,11 @@
 package em.libs.jfxtableview.enums;
 
-import em.libs.jfxtableview.Constants;
+import em.libs.jfxtableview.Messages;
 
 public enum CheckBoxFilterEnum {
-    ALL(Constants.ALL),
-    TRUE(Constants.TRUE),
-    FALSE(Constants.FALSE);
+    ALL(Messages.getString("ALL")),
+    TRUE(Messages.getString("TRUE")),
+    FALSE(Messages.getString("FALSE"));
 
     private final String text;
 

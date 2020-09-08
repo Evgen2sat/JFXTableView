@@ -2,6 +2,7 @@ package em.libs.jfxtableview.filterFields;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.validation.base.ValidatorBase;
+import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.models.FilterModel;
 import em.libs.jfxtableview.models.FilterSettingModel;
 import javafx.beans.value.ObservableValue;
@@ -41,7 +42,7 @@ public abstract class JFXSettingFilterViewDesigner<T> extends StackPane {
     private FilteredJFXComboBox<FilterModeModel> cmbFilterMode;
     private final FilterSettingModel viewModel;
 
-    private final RequiredFilteredComboBoxValidator requiredFilterModeValidator = new RequiredFilteredComboBoxValidator(REQUIRED_FIELD_ERROR);
+    private final RequiredFilteredComboBoxValidator requiredFilterModeValidator = new RequiredFilteredComboBoxValidator(Messages.getString("REQUIRED_FIELD_ERROR"));
     protected final ExistErrorsChecker existErrorsChecker = new ExistErrorsChecker();
 
     public JFXSettingFilterViewDesigner(FilterSettingModel viewModel) {
@@ -72,7 +73,7 @@ public abstract class JFXSettingFilterViewDesigner<T> extends StackPane {
     private void initCmbFilterMode() {
         cmbFilterMode = new FilteredJFXComboBox<>();
         cmbFilterMode.setLabelFloat(true);
-        cmbFilterMode.setPromptText(FILTER_MODE);
+        cmbFilterMode.setPromptText(Messages.getString("FILTER_MODE"));
         cmbFilterMode.setPrefWidth(400);
         cmbFilterMode.getValidators().add(requiredFilterModeValidator);
         cmbFilterMode.validate();
@@ -106,13 +107,13 @@ public abstract class JFXSettingFilterViewDesigner<T> extends StackPane {
     }
 
     private void initFcbFilterType(HBox hBoxItem, FilterModel filter) {
-        RequiredFilteredComboBoxValidator requiredItemValidator = new RequiredFilteredComboBoxValidator(REQUIRED_FIELD_ERROR);
-        ItemInListValidator<FilterTypeModel> filterTypeItemInListValidator = new ItemInListValidator<>(viewModel.getFilterTypes(), ITEM_NOT_CONTAINS_IN_LIST);
+        RequiredFilteredComboBoxValidator requiredItemValidator = new RequiredFilteredComboBoxValidator(Messages.getString("REQUIRED_FIELD_ERROR"));
+        ItemInListValidator<FilterTypeModel> filterTypeItemInListValidator = new ItemInListValidator<>(viewModel.getFilterTypes(), Messages.getString("ITEM_NOT_CONTAINS_IN_LIST"));
         existErrorsChecker.addValidators(requiredItemValidator, filterTypeItemInListValidator);
 
         FilteredJFXComboBoxWithClear<FilterTypeModel> fcbFilterType = new FilteredJFXComboBoxWithClear<>();
         fcbFilterType.setPrefWidth(200);
-        fcbFilterType.setPromptText(COMPARISON_OPTION);
+        fcbFilterType.setPromptText(Messages.getString("COMPARISON_OPTION"));
         fcbFilterType.setObservableList(viewModel.getFilterTypes());
         fcbFilterType.getValidators().addAll(requiredItemValidator, filterTypeItemInListValidator);
         fcbFilterType.validate();
@@ -126,7 +127,7 @@ public abstract class JFXSettingFilterViewDesigner<T> extends StackPane {
     }
 
     private void initBtnAddItem(HBox hBoxItem) {
-        JFXButton btnAddItem = new JFXIconButton(ADD_ICON, new FontAwesome().getFontSolid(), ADD_ITEM_FILTERING);
+        JFXButton btnAddItem = new JFXIconButton(ADD_ICON, new FontAwesome().getFontSolid(), Messages.getString("ADD_ITEM_FILTERING"));
         btnAddItem.getStyleClass().add("jfx-without-radius-button");
         btnAddItem.setOnAction(event -> {
             initHboxItem();
@@ -136,7 +137,7 @@ public abstract class JFXSettingFilterViewDesigner<T> extends StackPane {
     }
 
     private void initBtnDeleteItem(HBox hBoxItem) {
-        JFXButton btnDeleteItem = new JFXIconButton(DELETE_ICON, new FontAwesome().getFontSolid(), DELETE_ITEM_FILTERING);
+        JFXButton btnDeleteItem = new JFXIconButton(DELETE_ICON, new FontAwesome().getFontSolid(), Messages.getString("DELETE_ITEM_FILTERING"));
         btnDeleteItem.getStyleClass().add("jfx-without-radius-button");
         btnDeleteItem.setOnAction(event -> {
             FilteredJFXComboBoxWithClear<FilterTypeModel> cmbType = (FilteredJFXComboBoxWithClear<FilterTypeModel>) hBoxItem.getChildren().get(0);
@@ -165,7 +166,7 @@ public abstract class JFXSettingFilterViewDesigner<T> extends StackPane {
     }
 
     public void bindFields() {
-        ItemInListValidator<FilterModeModel> filterModeItemInListValidator = new ItemInListValidator<>(viewModel.getFilterModes(), ITEM_NOT_CONTAINS_IN_LIST);
+        ItemInListValidator<FilterModeModel> filterModeItemInListValidator = new ItemInListValidator<>(viewModel.getFilterModes(), Messages.getString("ITEM_NOT_CONTAINS_IN_LIST"));
 
         cmbFilterMode.setObservableList(viewModel.getFilterModes());
         cmbFilterMode.selectedValueProperty().bindBidirectional(viewModel.selectedFilterModeProperty());

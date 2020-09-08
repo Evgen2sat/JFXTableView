@@ -3,6 +3,7 @@ package em.libs.jfxtableview.filterFields.filterLocalDate;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.validation.RequiredFieldValidator;
 import com.jfoenix.validation.base.ValidatorBase;
+import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.models.FilterModel;
 import em.libs.jfxtableview.models.FilterSettingModel;
 import javafx.geometry.Insets;
@@ -16,9 +17,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static em.libs.jfxtableview.Constants.REQUIRED_FIELD_ERROR;
-import static em.libs.jfxtableview.Constants.VALUE;
-
 public abstract class JFXSettingFilterLocalDateViewDesigner extends JFXSettingFilterViewDesigner<LocalDate> {
     private Map<JFXDatePicker, List<ValidatorBase>> validatorsMap;
 
@@ -28,14 +26,14 @@ public abstract class JFXSettingFilterLocalDateViewDesigner extends JFXSettingFi
 
     @Override
     protected Node initFilterValueControl(FilterModel filter) {
-        RequiredFieldValidator requiredItemValidator = new RequiredFieldValidator(REQUIRED_FIELD_ERROR);
+        RequiredFieldValidator requiredItemValidator = new RequiredFieldValidator(Messages.getString("REQUIRED_FIELD_ERROR"));
         existErrorsChecker.addValidators(requiredItemValidator);
 
         JFXDatePicker dpItem = new JFXDatePicker();
         HBox.setMargin(dpItem, new Insets(5,0,0,0));
         dpItem.setPrefWidth(200);
         dpItem.setMaxWidth(200);
-        dpItem.setPromptText(VALUE);
+        dpItem.setPromptText(Messages.getString("VALUE"));
         dpItem.getValidators().add(requiredItemValidator);
         dpItem.validate();
         dpItem.valueProperty().addListener((observable, oldValue, newValue) -> {

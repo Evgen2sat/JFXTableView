@@ -1,5 +1,6 @@
 package em.libs.jfxtableview.cellFactories;
 
+import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.columns.JFXLocalDateTableColumn;
 import em.libs.jfxtableview.columns.JFXLocalDateTimeTableColumn;
 import em.libs.jfxtableview.columns.JFXTableColumn;
@@ -15,8 +16,6 @@ import java.awt.datatransfer.StringSelection;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-import static em.libs.jfxtableview.Constants.COPY;
 
 public class JFXDefaultTableCell<S, T> implements Callback<JFXTableColumn<S, T>, TableCell<S, T>> {
 
@@ -50,7 +49,7 @@ public class JFXDefaultTableCell<S, T> implements Callback<JFXTableColumn<S, T>,
                     super.setText(resultText);
 
                     ContextMenu contextMenu = new ContextMenu();
-                    MenuItem copyMenu = new MenuItem(COPY);
+                    MenuItem copyMenu = new MenuItem(Messages.getString("COPY"));
                     contextMenu.getItems().add(copyMenu);
                     copyMenu.setOnAction((e) -> {
                         Toolkit.getDefaultToolkit()

@@ -1,5 +1,6 @@
 package em.libs.jfxtableview.columns;
 
+import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
 import javafx.beans.value.ObservableValue;
 import em.libs.jfxtableview.JFXTableView;
@@ -29,13 +30,13 @@ public class JFXLongTableColumn<S> extends JFXTableColumn<S, Long> {
 
     private void init() {
         filterTypes = new ArrayList<>();
-        filterTypes.add(new FilterTypeModel(EQUALS, FilterTypeEnum.EQUALS, EQUALS_ICON, EQUALS));
-        filterTypes.add(new FilterTypeModel(NOT_EQUALS, FilterTypeEnum.NOT_EQUALS, NOT_EQUALS_ICON, NOT_EQUALS));
-        filterTypes.add(new FilterTypeModel(GREATHER_EQUALS_THAN, FilterTypeEnum.GREATHER_EQUALS_THAN, GREATHER_EQUALS_THAN_ICON, GREATHER_EQUALS_THAN));
-        filterTypes.add(new FilterTypeModel(GREATHER_THAN, FilterTypeEnum.GREATHER_THAN, GREATHER_THAN_ICON, GREATHER_THAN));
-        filterTypes.add(new FilterTypeModel(LESS_EQUALS_THAN, FilterTypeEnum.LESS_EQUALS_THAN, LESS_EQUALS_THAN_ICON, LESS_EQUALS_THAN));
-        filterTypes.add(new FilterTypeModel(LESS_THAN, FilterTypeEnum.LESS_THAN, LESS_THAN_ICON, LESS_THAN));
-        filterTypes.add(new FilterTypeModel(SETTING_FILTERING, FilterTypeEnum.SETTING_FILTERING, SETTING_FILTERING_ICON, SETTING_FILTERING));
+        filterTypes.add(new FilterTypeModel(Messages.getString("EQUALS"), FilterTypeEnum.EQUALS, EQUALS_ICON, Messages.getString("EQUALS")));
+        filterTypes.add(new FilterTypeModel(Messages.getString("NOT_EQUALS"), FilterTypeEnum.NOT_EQUALS, NOT_EQUALS_ICON, Messages.getString("NOT_EQUALS")));
+        filterTypes.add(new FilterTypeModel(Messages.getString("GREATHER_EQUALS_THAN"), FilterTypeEnum.GREATHER_EQUALS_THAN, GREATHER_EQUALS_THAN_ICON, Messages.getString("GREATHER_EQUALS_THAN")));
+        filterTypes.add(new FilterTypeModel(Messages.getString("GREATHER_THAN"), FilterTypeEnum.GREATHER_THAN, GREATHER_THAN_ICON, Messages.getString("GREATHER_THAN")));
+        filterTypes.add(new FilterTypeModel(Messages.getString("LESS_EQUALS_THAN"), FilterTypeEnum.LESS_EQUALS_THAN, LESS_EQUALS_THAN_ICON, Messages.getString("LESS_EQUALS_THAN")));
+        filterTypes.add(new FilterTypeModel(Messages.getString("LESS_THAN"), FilterTypeEnum.LESS_THAN, LESS_THAN_ICON, Messages.getString("LESS_THAN")));
+        filterTypes.add(new FilterTypeModel(Messages.getString("SETTING_FILTERING"), FilterTypeEnum.SETTING_FILTERING, SETTING_FILTERING_ICON, Messages.getString("SETTING_FILTERING")));
     }
 
     @Override
@@ -84,28 +85,28 @@ public class JFXLongTableColumn<S> extends JFXTableColumn<S, Long> {
             switch (totalType) {
                 case AVERAGE:
                     result
-                            .append(AVERAGE)
+                            .append(Messages.getString("AVERAGE"))
                             .append(": ")
                             .append(items.stream().mapToLong(Long::longValue).average().orElse(0))
                             .append("; ");
                     break;
                 case MINIMUM:
                     result
-                            .append(MINIMUM)
+                            .append(Messages.getString("MINIMUM"))
                             .append(": ")
                             .append(Collections.min(items))
                             .append("; ");
                     break;
                 case MAXIMUM:
                     result
-                            .append(MAXIMUM)
+                            .append(Messages.getString("MAXIMUM"))
                             .append(": ")
                             .append(Collections.max(items))
                             .append("; ");
                     break;
                 case SUM:
                     result
-                            .append(SUM)
+                            .append(Messages.getString("SUM"))
                             .append(": ")
                             .append(items.stream().mapToLong(Long::longValue).sum())
                             .append("; ");

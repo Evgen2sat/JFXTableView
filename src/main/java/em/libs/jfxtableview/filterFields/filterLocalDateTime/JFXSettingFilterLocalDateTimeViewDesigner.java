@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTimePicker;
 import com.jfoenix.validation.RequiredFieldValidator;
 import com.jfoenix.validation.base.ValidatorBase;
+import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.filterFields.JFXSettingFilterViewDesigner;
 import em.libs.jfxtableview.models.FilterModel;
 import em.libs.jfxtableview.models.FilterSettingModel;
@@ -41,14 +42,14 @@ public abstract class JFXSettingFilterLocalDateTimeViewDesigner extends JFXSetti
     }
 
     private void initDpItem(FilterModel filter, HBox hBoxFilterValueControl) {
-        RequiredFieldValidator requiredItemValidator = new RequiredFieldValidator(REQUIRED_FIELD_ERROR);
+        RequiredFieldValidator requiredItemValidator = new RequiredFieldValidator(Messages.getString("REQUIRED_FIELD_ERROR"));
         existErrorsChecker.addValidators(requiredItemValidator);
 
         dpItem = new JFXDatePicker();
         HBox.setMargin(dpItem, new Insets(5,0,0,0));
         dpItem.setPrefWidth(150);
         dpItem.setMaxWidth(150);
-        dpItem.setPromptText(DATE);
+        dpItem.setPromptText(Messages.getString("DATE"));
         dpItem.getValidators().add(requiredItemValidator);
         dpItem.validate();
         dpItem.valueProperty().addListener((observable, oldValue, newValue) -> {
@@ -66,7 +67,7 @@ public abstract class JFXSettingFilterLocalDateTimeViewDesigner extends JFXSetti
     }
 
     private void initTpItem(FilterModel filter, HBox hBoxFilterValueControl) {
-        RequiredFieldValidator requiredItemValidator = new RequiredFieldValidator(REQUIRED_FIELD_ERROR);
+        RequiredFieldValidator requiredItemValidator = new RequiredFieldValidator(Messages.getString("REQUIRED_FIELD_ERROR"));
         existErrorsChecker.addValidators(requiredItemValidator);
 
         tpItem = new JFXTimePicker();
@@ -74,7 +75,7 @@ public abstract class JFXSettingFilterLocalDateTimeViewDesigner extends JFXSetti
         HBox.setMargin(tpItem, new Insets(5,0,0,0));
         tpItem.setPrefWidth(150);
         tpItem.setMaxWidth(150);
-        tpItem.setPromptText(TIME);
+        tpItem.setPromptText(Messages.getString("TIME"));
         tpItem.getValidators().add(requiredItemValidator);
         tpItem.validate();
         tpItem.valueProperty().addListener((observable, oldValue, newValue) -> {

@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.events.JFXDialogEvent;
 import em.libs.jfxtableview.Constants;
+import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.enums.ClosingResult;
 import em.libs.jfxtableview.font.FontAwesome;
 import em.libs.jfxtableview.jfxDialogBox.events.ClosingActionEvent;
@@ -70,7 +71,7 @@ public class JFXDialogBox extends StackPane {
         lblClose.setFont(new FontAwesome(18).getFontSolid());
         lblClose.setPrefSize(25.0, 25.0);
         lblClose.setStyle("-fx-text-fill: -primary-color");
-        lblClose.setTooltip(new Tooltip(Constants.CLOSE));
+        lblClose.setTooltip(new Tooltip(Messages.getString("CLOSE")));
         lblClose.setAlignment(Pos.CENTER_RIGHT);
         lblClose.setOnMouseClicked(this::lblClose_onMouseClicked);
         lblClose.setCursor(Cursor.HAND);

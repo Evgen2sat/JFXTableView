@@ -1,6 +1,7 @@
 package em.libs.jfxtableview.filterFields.filterString;
 
 import em.libs.jfxtableview.JFXTableView;
+import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.columns.JFXStringTableColumn;
 import em.libs.jfxtableview.enums.FilterModeEnum;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
@@ -37,7 +38,7 @@ public class JFXFilterFieldStringViewImpl<T> extends JFXFilterFieldStringViewDes
     public void updateFilterField() {
         if(currentFilterType == FilterTypeEnum.SETTING_FILTERING) {
             if(!settingFilterView.checkErrors()) {
-                applyChangeFilterType(SETTING_FILTERING_ICON, SETTING_FILTERING, FilterTypeEnum.SETTING_FILTERING,
+                applyChangeFilterType(SETTING_FILTERING_ICON, Messages.getString("SETTING_FILTERING"), FilterTypeEnum.SETTING_FILTERING,
                         settingFilterView.getFilterMode(), settingFilterView.getFilteringValues());
             }
 
@@ -119,7 +120,7 @@ public class JFXFilterFieldStringViewImpl<T> extends JFXFilterFieldStringViewDes
             Pattern compile = Pattern.compile(filterText, Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
             return compile.matcher(item).matches();
         } catch (Exception e) {
-            setError(REGULAR_EXPRESSION_ERROR);
+            setError(Messages.getString("REGULAR_EXPRESSION_ERROR"));
             return false;
         }
     }
@@ -172,11 +173,11 @@ public class JFXFilterFieldStringViewImpl<T> extends JFXFilterFieldStringViewDes
                     return;
                 }
 
-                applyChangeFilterType(SETTING_FILTERING_ICON, SETTING_FILTERING, FilterTypeEnum.SETTING_FILTERING,
+                applyChangeFilterType(SETTING_FILTERING_ICON, Messages.getString("SETTING_FILTERING"), FilterTypeEnum.SETTING_FILTERING,
                         settingFilterView.getFilterMode(), settingFilterView.getFilteringValues());
             }
         });
 
-        dialogBox.show(((JFXTableView<T>) (column.getTableView())).getBG(), 510, -1, SETTINGS_FILTERING + column.getColumnName());
+        dialogBox.show(((JFXTableView<T>) (column.getTableView())).getBG(), 510, -1, Messages.getString("SETTINGS_FILTERING") + column.getColumnName());
     }
 }

@@ -52,7 +52,7 @@ public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscri
     };
 
     private final ListChangeListener<? super T> filteredListChangeListener = lc -> {
-        lblCountRows.setText(AMOUNT + ": " + filteredList.size());
+        lblCountRows.setText(Messages.getString("AMOUNT") + ": " + filteredList.size());
     };
 
     public JFXTableView(StackPane background) {
@@ -95,13 +95,13 @@ public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscri
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
 
-        btnExportToCSV = new JFXIconButton("\uF56D", new FontAwesome().getFontSolid(), EXPORT_DATA);
+        btnExportToCSV = new JFXIconButton("\uF56D", new FontAwesome().getFontSolid(), Messages.getString("EXPORT_DATA"));
         btnExportToCSV.getStyleClass().add("jfx-without-radius-button");
         btnExportToCSV.setOnAction(event -> {
             try {
                 ExportToCSV.writeExcel(getDataForExport());
             } catch (Exception e) {
-                stringEmitter.onNext(EXPORT_TO_CSV_ERROR + ": " + e.getMessage());
+                stringEmitter.onNext(Messages.getString("EXPORT_TO_CSV_ERROR") + ": " + e.getMessage());
             }
         });
         vBox.getChildren().add(btnExportToCSV);

@@ -2,6 +2,7 @@ package em.libs.jfxtableview.columns;
 
 import com.jfoenix.controls.JFXButton;
 import em.libs.jfxtableview.JFXTableView;
+import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.enums.TotalTypeEnum;
 import em.libs.jfxtableview.totalField.TotalFieldTableColumnView;
 import javafx.beans.value.ObservableValue;
@@ -103,7 +104,7 @@ public abstract class JFXTableColumn<S, T> extends TableColumn<S, T> {
     }
 
     private void initBtnSetTotalOption() {
-        JFXButton btnSetTotalOption = new JFXIconButton(TOTAL_ICON, new FontAwesome(12).getFontSolid(), SHOW_TOTAL_BY_COLUMN);
+        JFXButton btnSetTotalOption = new JFXIconButton(TOTAL_ICON, new FontAwesome(12).getFontSolid(), Messages.getString("SHOW_TOTAL_BY_COLUMN"));
         btnSetTotalOption.getStyleClass().add("jfx-without-radius-button");
         btnSetTotalOption.setOnAction(this::setOnClickSumButton);
         GridPane.setMargin(btnSetTotalOption, new Insets(0, 0, 3, 0));
@@ -126,7 +127,7 @@ public abstract class JFXTableColumn<S, T> extends TableColumn<S, T> {
             }
         });
 
-        dialogBox.show(((JFXTableView) (getTableView())).getBG(), 250, -1, SELECTING_TOTAL);
+        dialogBox.show(((JFXTableView) (getTableView())).getBG(), 250, -1, Messages.getString("SELECTING_TOTAL"));
     }
 
     private void initLblTotalText() {

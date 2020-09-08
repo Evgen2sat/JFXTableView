@@ -2,7 +2,7 @@ package em.libs.jfxtableview.filterFields.filterLocalDateTime;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPopup;
-import em.libs.jfxtableview.JFXDateControl;
+import em.libs.jfxtableview.*;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
 import em.libs.jfxtableview.models.FilterModel;
 import javafx.event.ActionEvent;
@@ -14,8 +14,6 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import em.libs.jfxtableview.JFXIconButton;
-import em.libs.jfxtableview.JFXTimeControl;
 import em.libs.jfxtableview.enums.FilterModeEnum;
 import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
 import em.libs.jfxtableview.font.FontAwesome;
@@ -162,7 +160,7 @@ public abstract class JFXFilterFieldLocalDateTimeViewDesigner extends JFXFilterF
     }
 
     private void initBtnLocalDateClear(StackPane spLocalDate) {
-        btnLocalDateClear = new JFXIconButton(CLOSE_ICON, new FontAwesome(12).getFontSolid(), CLEAR_FILTER);
+        btnLocalDateClear = new JFXIconButton(CLOSE_ICON, new FontAwesome(12).getFontSolid(), Messages.getString("CLEAR_FILTER"));
         btnLocalDateClear.getStyleClass().add("jfx-without-radius-button");
         btnLocalDateClear.setStyle("-fx-text-fill: TRANSPARENT");
         StackPane.setAlignment(btnLocalDateClear, Pos.CENTER_RIGHT);
@@ -191,7 +189,7 @@ public abstract class JFXFilterFieldLocalDateTimeViewDesigner extends JFXFilterF
     }
 
     private void initBtnLocalTimeClear(StackPane spLocalTime) {
-        btnLocalTimeClear = new JFXIconButton(CLOSE_ICON, new FontAwesome(12).getFontSolid(), CLEAR_FILTER);
+        btnLocalTimeClear = new JFXIconButton(CLOSE_ICON, new FontAwesome(12).getFontSolid(), Messages.getString("CLEAR_FILTER"));
         btnLocalTimeClear.getStyleClass().add("jfx-without-radius-button");
         btnLocalTimeClear.setStyle("-fx-text-fill: TRANSPARENT");
         StackPane.setAlignment(btnLocalTimeClear, Pos.CENTER_RIGHT);
@@ -202,7 +200,7 @@ public abstract class JFXFilterFieldLocalDateTimeViewDesigner extends JFXFilterF
     }
 
     private void initBtnChangeFilterType() {
-        btnChangeFilterType = new JFXIconButton("\uF52C", new FontAwesome(12).getFontSolid(), EQUALS);
+        btnChangeFilterType = new JFXIconButton("\uF52C", new FontAwesome(12).getFontSolid(), Messages.getString("EQUALS"));
         btnChangeFilterType.getStyleClass().add("jfx-without-radius-button");
         btnChangeFilterType.setOnAction(this::btnSettingsFilter_onAction);
         HBox.setMargin(btnChangeFilterType, new Insets(3));
@@ -244,7 +242,7 @@ public abstract class JFXFilterFieldLocalDateTimeViewDesigner extends JFXFilterF
         try {
             return LocalDateTime.of(date, time);
         } catch (Exception e) {
-            setError(REQUIRED_DATE_AND_TIME);
+            setError(Messages.getString("REQUIRED_DATE_AND_TIME"));
         }
 
         return null;

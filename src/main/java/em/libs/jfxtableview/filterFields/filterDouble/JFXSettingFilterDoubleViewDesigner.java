@@ -1,6 +1,7 @@
 package em.libs.jfxtableview.filterFields.filterDouble;
 
 import com.jfoenix.validation.base.ValidatorBase;
+import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.filterFields.JFXSettingFilterViewDesigner;
 import em.libs.jfxtableview.filterFields.commands.ConvertToValidDoubleFilterCommand;
 import em.libs.jfxtableview.models.FilterModel;
@@ -26,14 +27,14 @@ public abstract class JFXSettingFilterDoubleViewDesigner extends JFXSettingFilte
 
     @Override
     protected Node initFilterValueControl(FilterModel filter) {
-        RequiredFilteredComboBoxValidator requiredFcbItemValidator = new RequiredFilteredComboBoxValidator(REQUIRED_FIELD_ERROR);
-        DoubleRangeValidator valueDoubleRangeValidator = new DoubleRangeValidator(DOUBLE_VALUE_FROM_TO_ERROR);
+        RequiredFilteredComboBoxValidator requiredFcbItemValidator = new RequiredFilteredComboBoxValidator(Messages.getString("REQUIRED_FIELD_ERROR"));
+        DoubleRangeValidator valueDoubleRangeValidator = new DoubleRangeValidator(Messages.getString("DOUBLE_VALUE_FROM_TO_ERROR"));
         existErrorsChecker.addValidators(requiredFcbItemValidator, valueDoubleRangeValidator);
 
         FilteredJFXComboBoxWithClear<Double> fcbItem = new FilteredJFXComboBoxWithClear<>();
         fcbItem.setPrefWidth(200);
         fcbItem.setMaxWidth(200);
-        fcbItem.setPromptText(VALUE);
+        fcbItem.setPromptText(Messages.getString("VALUE"));
         fcbItem.setObservableList(items);
         fcbItem.getValidators().addAll(requiredFcbItemValidator, valueDoubleRangeValidator);
         fcbItem.validate();

@@ -1,6 +1,7 @@
 package em.libs.jfxtableview.filterFields.filterFloat;
 
 import com.jfoenix.validation.base.ValidatorBase;
+import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.filterFields.commands.ConvertToValidFloatFilterCommand;
 import em.libs.jfxtableview.models.FilterModel;
 import em.libs.jfxtableview.models.FilterSettingModel;
@@ -26,15 +27,15 @@ public abstract class JFXSettingFilterFloatViewDesigner extends JFXSettingFilter
 
     @Override
     protected Node initFilterValueControl(FilterModel filter) {
-        RequiredFilteredComboBoxValidator requiredFcbItemValidator = new RequiredFilteredComboBoxValidator(REQUIRED_FIELD_ERROR);
-        FloatRangeValidator valueFloatRangeValidator = new FloatRangeValidator(FLOAT_VALUE_FROM_TO_ERROR);
+        RequiredFilteredComboBoxValidator requiredFcbItemValidator = new RequiredFilteredComboBoxValidator(Messages.getString("REQUIRED_FIELD_ERROR"));
+        FloatRangeValidator valueFloatRangeValidator = new FloatRangeValidator(Messages.getString("FLOAT_VALUE_FROM_TO_ERROR"));
 
         existErrorsChecker.addValidators(requiredFcbItemValidator, valueFloatRangeValidator);
 
         FilteredJFXComboBoxWithClear<Float> fcbItem = new FilteredJFXComboBoxWithClear<>();
         fcbItem.setPrefWidth(200);
         fcbItem.setMaxWidth(200);
-        fcbItem.setPromptText(VALUE);
+        fcbItem.setPromptText(Messages.getString("VALUE"));
         fcbItem.setObservableList(items);
         fcbItem.getValidators().addAll(requiredFcbItemValidator, valueFloatRangeValidator);
         fcbItem.validate();

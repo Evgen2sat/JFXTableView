@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPopup;
 import em.libs.jfxtableview.Constants;
+import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.enums.FilterModeEnum;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
 import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
@@ -141,7 +142,7 @@ public abstract class JFXFilterFieldLocalDateViewDesigner extends JFXFilterField
     }
 
     private void initBtnClear() {
-        btnClear = new JFXIconButton(Constants.CLOSE_ICON, new FontAwesome(12).getFontSolid(), Constants.CLEAR_FILTER);
+        btnClear = new JFXIconButton(Constants.CLOSE_ICON, new FontAwesome(12).getFontSolid(), Messages.getString("CLEAR_FILTER"));
         btnClear.getStyleClass().add("jfx-without-radius-button");
         btnClear.setStyle("-fx-text-fill: TRANSPARENT");
         StackPane.setAlignment(btnClear, Pos.CENTER_RIGHT);
@@ -152,7 +153,7 @@ public abstract class JFXFilterFieldLocalDateViewDesigner extends JFXFilterField
     }
 
     private void initBtnChangeFilterType() {
-        btnChangeFilterType = new JFXIconButton("\uF52C", new FontAwesome(12).getFontSolid(), Constants.EQUALS);
+        btnChangeFilterType = new JFXIconButton("\uF52C", new FontAwesome(12).getFontSolid(), Messages.getString("EQUALS"));
         btnChangeFilterType.getStyleClass().add("jfx-without-radius-button");
         btnChangeFilterType.setOnAction(this::btnSettingsFilter_onAction);
         HBox.setMargin(btnChangeFilterType, new Insets(3));

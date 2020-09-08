@@ -1,6 +1,7 @@
 package em.libs.jfxtableview.filterFields.filterLocalDateTime;
 
 import em.libs.jfxtableview.JFXTableView;
+import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.columns.JFXLocalDateTimeTableColumn;
 import em.libs.jfxtableview.enums.FilterModeEnum;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
@@ -37,7 +38,7 @@ public class JFXFilterFieldLocalDateTimeViewImpl<T> extends JFXFilterFieldLocalD
     public void updateFilterField() {
         if(currentFilterType == FilterTypeEnum.SETTING_FILTERING) {
             if(!settingFilterView.checkErrors()) {
-                applyChangeFilterType(SETTING_FILTERING_ICON, SETTING_FILTERING, FilterTypeEnum.SETTING_FILTERING,
+                applyChangeFilterType(SETTING_FILTERING_ICON, Messages.getString("SETTING_FILTERING"), FilterTypeEnum.SETTING_FILTERING,
                         settingFilterView.getFilterMode(), settingFilterView.getFilteringValues());
             }
 
@@ -153,11 +154,11 @@ public class JFXFilterFieldLocalDateTimeViewImpl<T> extends JFXFilterFieldLocalD
                     return;
                 }
 
-                applyChangeFilterType(SETTING_FILTERING_ICON, SETTING_FILTERING, FilterTypeEnum.SETTING_FILTERING,
+                applyChangeFilterType(SETTING_FILTERING_ICON, Messages.getString("SETTING_FILTERING"), FilterTypeEnum.SETTING_FILTERING,
                         settingFilterView.getFilterMode(), settingFilterView.getFilteringValues());
             }
         });
 
-        dialogBox.show(((JFXTableView<T>) (column.getTableView())).getBG(), 610, -1, SETTINGS_FILTERING + column.getColumnName());
+        dialogBox.show(((JFXTableView<T>) (column.getTableView())).getBG(), 610, -1, Messages.getString("SETTINGS_FILTERING") + column.getColumnName());
     }
 }

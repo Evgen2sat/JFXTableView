@@ -1,5 +1,6 @@
 package em.libs.jfxtableview.columns;
 
+import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -28,14 +29,14 @@ public class JFXStringTableColumn<S> extends JFXTableColumn<S, String> {
 
     private void init() {
         filterTypes = new ArrayList<>();
-        filterTypes.add(new FilterTypeModel(EQUALS, FilterTypeEnum.EQUALS, EQUALS_ICON, EQUALS));
-        filterTypes.add(new FilterTypeModel(NOT_EQUALS, FilterTypeEnum.NOT_EQUALS, NOT_EQUALS_ICON, NOT_EQUALS));
-        filterTypes.add(new FilterTypeModel(START_WITH, FilterTypeEnum.START_WITH, START_WITH_ICON, START_WITH));
-        filterTypes.add(new FilterTypeModel(END_WITH, FilterTypeEnum.END_WITH, END_WITH_ICON, END_WITH));
-        filterTypes.add(new FilterTypeModel(CONTAINS, FilterTypeEnum.CONTAINS, CONTAINS_ICON, CONTAINS));
-        filterTypes.add(new FilterTypeModel(NOT_CONTAINS, FilterTypeEnum.NOT_CONTAINS, NOT_CONTAINS_ICON, NOT_CONTAINS));
-        filterTypes.add(new FilterTypeModel(REGULAR_EXPRESSION, FilterTypeEnum.REGULAR_EXPRESSION, REGULAR_EXPRESSION_ICON, REGULAR_EXPRESSION));
-        filterTypes.add(new FilterTypeModel(SETTING_FILTERING, FilterTypeEnum.SETTING_FILTERING, SETTING_FILTERING_ICON, SETTING_FILTERING));
+        filterTypes.add(new FilterTypeModel(Messages.getString("EQUALS"), FilterTypeEnum.EQUALS, EQUALS_ICON, Messages.getString("EQUALS")));
+        filterTypes.add(new FilterTypeModel(Messages.getString("NOT_EQUALS"), FilterTypeEnum.NOT_EQUALS, NOT_EQUALS_ICON, Messages.getString("NOT_EQUALS")));
+        filterTypes.add(new FilterTypeModel(Messages.getString("START_WITH"), FilterTypeEnum.START_WITH, START_WITH_ICON, Messages.getString("START_WITH")));
+        filterTypes.add(new FilterTypeModel(Messages.getString("END_WITH"), FilterTypeEnum.END_WITH, END_WITH_ICON, Messages.getString("END_WITH")));
+        filterTypes.add(new FilterTypeModel(Messages.getString("CONTAINS"), FilterTypeEnum.CONTAINS, CONTAINS_ICON, Messages.getString("CONTAINS")));
+        filterTypes.add(new FilterTypeModel(Messages.getString("NOT_CONTAINS"), FilterTypeEnum.NOT_CONTAINS, NOT_CONTAINS_ICON, Messages.getString("NOT_CONTAINS")));
+        filterTypes.add(new FilterTypeModel(Messages.getString("REGULAR_EXPRESSION"), FilterTypeEnum.REGULAR_EXPRESSION, REGULAR_EXPRESSION_ICON, Messages.getString("REGULAR_EXPRESSION")));
+        filterTypes.add(new FilterTypeModel(Messages.getString("SETTING_FILTERING"), FilterTypeEnum.SETTING_FILTERING, SETTING_FILTERING_ICON, Messages.getString("SETTING_FILTERING")));
     }
 
     @Override
