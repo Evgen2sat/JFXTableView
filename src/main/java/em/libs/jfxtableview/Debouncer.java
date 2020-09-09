@@ -24,14 +24,14 @@ public class Debouncer<T extends Event> implements EventHandler<T> {
 
     @Override
     public void handle(T event) {
-        if(delayedEventHandler == null) {
+        if (delayedEventHandler == null) {
             this.event = event;
 
             delayedEventHandler = CompletableFuture.runAsync(() ->
-                    Platform.runLater(() -> {
-                        handler.handle(this.event);
-                        delayedEventHandler = null;
-                    }),
+                            Platform.runLater(() -> {
+                                handler.handle(this.event);
+                                delayedEventHandler = null;
+                            }),
                     CompletableFuture.delayedExecutor(msTimeout, TimeUnit.MILLISECONDS));
         }
     }

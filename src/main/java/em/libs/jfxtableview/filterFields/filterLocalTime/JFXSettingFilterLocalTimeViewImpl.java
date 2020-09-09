@@ -1,9 +1,9 @@
 package em.libs.jfxtableview.filterFields.filterLocalTime;
 
-import javafx.beans.value.ObservableValue;
 import em.libs.jfxtableview.enums.FilterModeEnum;
 import em.libs.jfxtableview.models.FilterModel;
 import em.libs.jfxtableview.models.FilterSettingModel;
+import javafx.beans.value.ObservableValue;
 
 import java.time.LocalTime;
 import java.util.ArrayList;

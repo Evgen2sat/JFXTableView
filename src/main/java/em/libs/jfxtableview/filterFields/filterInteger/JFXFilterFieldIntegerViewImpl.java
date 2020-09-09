@@ -1,18 +1,18 @@
 package em.libs.jfxtableview.filterFields.filterInteger;
 
-import em.libs.jfxtableview.Messages;
-import em.libs.jfxtableview.models.FilterModel;
-import em.libs.jfxtableview.models.FilterSettingModel;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import em.libs.jfxtableview.Debouncer;
 import em.libs.jfxtableview.JFXTableView;
+import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.columns.JFXIntegerTableColumn;
 import em.libs.jfxtableview.enums.ClosingResult;
 import em.libs.jfxtableview.enums.FilterModeEnum;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
 import em.libs.jfxtableview.filterFields.commands.ConvertToValidIntegerFilterCommand;
 import em.libs.jfxtableview.jfxSimpleDialogBox.JFXSimpleDialogBox;
+import em.libs.jfxtableview.models.FilterModel;
+import em.libs.jfxtableview.models.FilterSettingModel;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 
 import java.util.HashSet;
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static em.libs.jfxtableview.Constants.*;
+import static em.libs.jfxtableview.Constants.SETTING_FILTERING_ICON;
 
 public class JFXFilterFieldIntegerViewImpl<T> extends JFXFilterFieldIntegerViewDesigner {
 
@@ -36,8 +36,8 @@ public class JFXFilterFieldIntegerViewImpl<T> extends JFXFilterFieldIntegerViewD
 
     @Override
     public void updateFilterField() {
-        if(currentFilterType == FilterTypeEnum.SETTING_FILTERING) {
-            if(!settingFilterView.checkErrors()) {
+        if (currentFilterType == FilterTypeEnum.SETTING_FILTERING) {
+            if (!settingFilterView.checkErrors()) {
                 applyChangeFilterType(SETTING_FILTERING_ICON, Messages.getString("SETTING_FILTERING"), FilterTypeEnum.SETTING_FILTERING,
                         settingFilterView.getFilterMode(), settingFilterView.getFilteringValues());
             }
@@ -54,15 +54,15 @@ public class JFXFilterFieldIntegerViewImpl<T> extends JFXFilterFieldIntegerViewD
     protected void txtSearchFieldChangeListener(ObservableValue<? extends String> observable, String oldValue, String newValue) {
         new Debouncer<>(300, event -> {
             String resultText = newValue;
-            if(newValue != null && !newValue.isEmpty()) {
+            if (newValue != null && !newValue.isEmpty()) {
                 resultText = new ConvertToValidIntegerFilterCommand(newValue).execute();
-                if(!resultText.equals(newValue)) {
+                if (!resultText.equals(newValue)) {
                     txtSearchField.setText(resultText);
                 }
             }
 
             Integer filterValue = null;
-            if(resultText != null && !resultText.isEmpty()) {
+            if (resultText != null && !resultText.isEmpty()) {
                 try {
                     filterValue = Integer.valueOf(resultText);
                 } catch (Exception e) {
@@ -99,7 +99,7 @@ public class JFXFilterFieldIntegerViewImpl<T> extends JFXFilterFieldIntegerViewD
 
     private boolean applyFilter(Integer item, Integer filterValue, FilterTypeEnum filterType, FilterModeEnum filterMode, List<FilterModel> filterValues) {
         if ((filterType != FilterTypeEnum.SETTING_FILTERING && filterValue == null)
-            || (filterType == FilterTypeEnum.SETTING_FILTERING && (filterValues == null || filterValues.isEmpty()))) {
+                || (filterType == FilterTypeEnum.SETTING_FILTERING && (filterValues == null || filterValues.isEmpty()))) {
             return true;
         }
 
@@ -135,14 +135,14 @@ public class JFXFilterFieldIntegerViewImpl<T> extends JFXFilterFieldIntegerViewD
     }
 
     private boolean applySettingAllFilter(Integer item, List<FilterModel> filterValues) {
-        for(FilterModel filter : filterValues) {
+        for (FilterModel filter : filterValues) {
 
             Integer filterValue = null;
-            if(filter.getText() != null && !filter.getText().isEmpty()) {
+            if (filter.getText() != null && !filter.getText().isEmpty()) {
                 filterValue = Integer.valueOf(filter.getText());
             }
 
-            if(!applyFilter(item, filterValue, filter.getType().getType(), null, filterValues)) {
+            if (!applyFilter(item, filterValue, filter.getType().getType(), null, filterValues)) {
                 return false;
             }
         }
@@ -151,14 +151,14 @@ public class JFXFilterFieldIntegerViewImpl<T> extends JFXFilterFieldIntegerViewD
     }
 
     private boolean applySettingAnyFilter(Integer item, List<FilterModel> filterValues) {
-        for(FilterModel filter : filterValues) {
+        for (FilterModel filter : filterValues) {
 
             Integer filterValue = null;
-            if(filter.getText() != null && !filter.getText().isEmpty()) {
+            if (filter.getText() != null && !filter.getText().isEmpty()) {
                 filterValue = Integer.valueOf(filter.getText());
             }
 
-            if(applyFilter(item, filterValue, filter.getType().getType(), null, filterValues)) {
+            if (applyFilter(item, filterValue, filter.getType().getType(), null, filterValues)) {
                 return true;
             }
         }
@@ -169,7 +169,7 @@ public class JFXFilterFieldIntegerViewImpl<T> extends JFXFilterFieldIntegerViewD
     @Override
     protected void btnCustom_onAction(ActionEvent event) {
         //открыть контрол настройки фильтрации
-        if(dialogBox == null) {
+        if (dialogBox == null) {
             settingFilterView = new JFXSettingFilterIntegerViewImpl(new FilterSettingModel(column.getFilterTypes()));
             dialogBox = new JFXSimpleDialogBox(settingFilterView);
         }
@@ -177,8 +177,8 @@ public class JFXFilterFieldIntegerViewImpl<T> extends JFXFilterFieldIntegerViewD
         settingFilterView.setItems(new HashSet<>(column.getValues().keySet()));
 
         dialogBox.setOnClosing(closingEvent -> {
-            if(closingEvent.getResult() == ClosingResult.OK) {
-                if(settingFilterView.checkErrors()) {
+            if (closingEvent.getResult() == ClosingResult.OK) {
+                if (settingFilterView.checkErrors()) {
                     closingEvent.setCancel(true);
                     return;
                 }

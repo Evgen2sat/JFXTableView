@@ -2,13 +2,15 @@ package em.libs.jfxtableview.filterFields.filterLocalTime;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPopup;
-import com.jfoenix.controls.JFXTimePicker;
-import em.libs.jfxtableview.Constants;
+import em.libs.jfxtableview.JFXIconButton;
+import em.libs.jfxtableview.JFXTimeControl;
 import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.enums.FilterModeEnum;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
 import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
+import em.libs.jfxtableview.font.FontAwesome;
 import em.libs.jfxtableview.models.FilterModel;
+import em.libs.jfxtableview.models.FilterTypeModel;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -19,20 +21,18 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import em.libs.jfxtableview.JFXIconButton;
-import em.libs.jfxtableview.font.FontAwesome;
-import em.libs.jfxtableview.models.FilterTypeModel;
 
 import java.time.LocalTime;
 import java.util.List;
 
-import static em.libs.jfxtableview.Constants.*;
+import static em.libs.jfxtableview.Constants.CLOSE_ICON;
+import static em.libs.jfxtableview.Constants.ERROR_ICON;
 
 public abstract class JFXFilterFieldLocalTimeViewDesigner extends JFXFilterFieldView {
 
     private StackPane background;
     private HBox hBoxFilterPane;
-    protected JFXTimePicker tpSearchField;
+    protected JFXTimeControl tpSearchField;
     private JFXButton btnClear;
     protected StackPane spSearchField;
     protected JFXButton btnChangeFilterType;
@@ -136,7 +136,7 @@ public abstract class JFXFilterFieldLocalTimeViewDesigner extends JFXFilterField
     }
 
     private void initDpSearchField() {
-        tpSearchField = new JFXTimePicker();
+        tpSearchField = new JFXTimeControl();
         tpSearchField.set24HourView(true);
         tpSearchField.setMinWidth(10);
         tpSearchField.valueProperty().addListener(this::dpSearchFieldChangeListener);
@@ -173,12 +173,12 @@ public abstract class JFXFilterFieldLocalTimeViewDesigner extends JFXFilterField
     }
 
     protected void setError(String errorText) {
-        if(lblError == null) {
+        if (lblError == null) {
             initLblError();
         }
 
         lblError.getTooltip().setText(errorText);
-        if(!hBoxFilterPane.getChildren().get(hBoxFilterPane.getChildren().size() - 1).equals(lblError)) {
+        if (!hBoxFilterPane.getChildren().get(hBoxFilterPane.getChildren().size() - 1).equals(lblError)) {
             hBoxFilterPane.getChildren().add(lblError);
         }
     }

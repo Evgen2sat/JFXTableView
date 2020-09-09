@@ -25,10 +25,10 @@ public class FilteredJFXComboBoxWithClear<T> extends BorderPane {
     private static final String TOOLTIP_STYLE = "-fx-fonts-size: 13";
 
     public FilteredJFXComboBoxWithClear() {
-        this (null, null);
+        this(null, null);
     }
 
-    public FilteredJFXComboBoxWithClear(FilteredJFXComboBox.AutoCompleteComparator<T> comparatorMethod, ObservableList<T> observableList){
+    public FilteredJFXComboBoxWithClear(FilteredJFXComboBox.AutoCompleteComparator<T> comparatorMethod, ObservableList<T> observableList) {
 
         lblClear.setFont(new FontAwesome(14).getFontSolid());
         lblClear.setStyle("-fx-text-fill: TRANSPARENT");
@@ -38,7 +38,7 @@ public class FilteredJFXComboBoxWithClear<T> extends BorderPane {
         lblClear.setCursor(Cursor.HAND);
 
         StackPane.setAlignment(lblClear, Pos.CENTER_RIGHT);
-        StackPane.setMargin(lblClear, new Insets(0,30,0,0));
+        StackPane.setMargin(lblClear, new Insets(0, 30, 0, 0));
 
         setOnMouseEntered(event -> lblClear.setStyle("-fx-text-fill: #9D9D9D"));
         setOnMouseExited(event -> lblClear.setStyle("-fx-text-fill: TRANSPARENT"));
@@ -84,15 +84,18 @@ public class FilteredJFXComboBoxWithClear<T> extends BorderPane {
         setSelectedValue(null);
     }
 
-    public T getSelectedValue(){
+    public T getSelectedValue() {
         return editor.getSelectedValue();
     }
+
     public void setSelectedValue(T selectedValue) {
         editor.setSelectedValue(selectedValue);
     }
+
     public ObjectProperty<T> selectedValueProperty() {
         return editor.selectedValueProperty();
     }
+
     public StringProperty textProperty() {
         return editor.getEditor().textProperty();
     }

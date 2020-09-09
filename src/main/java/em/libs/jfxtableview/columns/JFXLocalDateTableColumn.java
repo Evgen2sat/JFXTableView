@@ -4,10 +4,10 @@ import em.libs.jfxtableview.JFXTableView;
 import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
 import em.libs.jfxtableview.enums.TotalTypeEnum;
-import javafx.beans.value.ObservableValue;
 import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
 import em.libs.jfxtableview.filterFields.filterLocalDate.JFXFilterFieldLocalDateViewImpl;
 import em.libs.jfxtableview.models.FilterTypeModel;
+import javafx.beans.value.ObservableValue;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -72,18 +72,18 @@ public class JFXLocalDateTableColumn<S> extends JFXTableColumn<S, LocalDate> {
 
     @Override
     public String getTotalText(List<TotalTypeEnum> selectedTotalTypes) {
-        if(selectedTotalTypes == null || selectedTotalTypes.isEmpty()) {
+        if (selectedTotalTypes == null || selectedTotalTypes.isEmpty()) {
             return null;
         }
 
         List<LocalDate> items = ((JFXTableView<S>) getTableView()).getFilteredList().stream().filter(item -> getCellData(item) != null).map(this::getCellData).collect(Collectors.toList());
 
-        if(items.isEmpty()) {
+        if (items.isEmpty()) {
             return null;
         }
 
         StringBuilder result = new StringBuilder();
-        for(TotalTypeEnum totalType : selectedTotalTypes) {
+        for (TotalTypeEnum totalType : selectedTotalTypes) {
             switch (totalType) {
                 case MINIMUM:
                     result

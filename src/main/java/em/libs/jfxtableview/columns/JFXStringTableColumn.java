@@ -1,14 +1,14 @@
 package em.libs.jfxtableview.columns;
 
+import em.libs.jfxtableview.JFXTableView;
 import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import em.libs.jfxtableview.JFXTableView;
 import em.libs.jfxtableview.enums.TotalTypeEnum;
 import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
 import em.libs.jfxtableview.filterFields.filterString.JFXFilterFieldStringViewImpl;
 import em.libs.jfxtableview.models.FilterTypeModel;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 
 import java.util.*;
 
@@ -59,10 +59,10 @@ public class JFXStringTableColumn<S> extends JFXTableColumn<S, String> {
         Map<ObservableValue<String>, S> values = new HashMap<>();
 
         ((JFXTableView<S>) getTableView()).getBackingList().forEach(item -> {
-            if(getCellData(item) instanceof String) {
+            if (getCellData(item) instanceof String) {
                 values.put(getCellObservableValue(item), item);
             } else {
-                SimpleStringProperty simpleStringProperty = new SimpleStringProperty(((Object)getCellData(item)).toString());
+                SimpleStringProperty simpleStringProperty = new SimpleStringProperty(((Object) getCellData(item)).toString());
                 values.put(simpleStringProperty, item);
             }
         });

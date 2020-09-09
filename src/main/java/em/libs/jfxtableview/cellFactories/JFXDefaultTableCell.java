@@ -19,7 +19,8 @@ import java.time.format.DateTimeFormatter;
 
 public class JFXDefaultTableCell<S, T> implements Callback<JFXTableColumn<S, T>, TableCell<S, T>> {
 
-    public JFXDefaultTableCell() {}
+    public JFXDefaultTableCell() {
+    }
 
     @Override
     public TableCell<S, T> call(JFXTableColumn<S, T> param) {
@@ -38,9 +39,9 @@ public class JFXDefaultTableCell<S, T> implements Callback<JFXTableColumn<S, T>,
                     super.setGraphic((Node) item);
                 } else if (item != null) {
                     final String resultText;
-                    if(param instanceof JFXLocalDateTableColumn) {
+                    if (param instanceof JFXLocalDateTableColumn) {
                         resultText = LocalDate.parse(item.toString()).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-                    } else if(param instanceof JFXLocalDateTimeTableColumn) {
+                    } else if (param instanceof JFXLocalDateTimeTableColumn) {
                         resultText = LocalDateTime.parse(item.toString()).format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"));
                     } else {
                         resultText = item.toString();

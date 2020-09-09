@@ -1,15 +1,15 @@
 package em.libs.jfxtableview.filterFields.filterLocalTime;
 
-import com.jfoenix.controls.JFXTimePicker;
 import com.jfoenix.validation.RequiredFieldValidator;
 import com.jfoenix.validation.base.ValidatorBase;
+import em.libs.jfxtableview.JFXTimeControl;
 import em.libs.jfxtableview.Messages;
+import em.libs.jfxtableview.filterFields.JFXSettingFilterViewDesigner;
 import em.libs.jfxtableview.models.FilterModel;
 import em.libs.jfxtableview.models.FilterSettingModel;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
-import em.libs.jfxtableview.filterFields.JFXSettingFilterViewDesigner;
 
 import java.time.LocalTime;
 import java.util.Arrays;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class JFXSettingFilterLocalTimeViewDesigner extends JFXSettingFilterViewDesigner<LocalTime> {
-    private Map<JFXTimePicker, List<ValidatorBase>> validatorsMap;
+    private Map<JFXTimeControl, List<ValidatorBase>> validatorsMap;
 
     public JFXSettingFilterLocalTimeViewDesigner(FilterSettingModel viewModel) {
         super(viewModel);
@@ -29,7 +29,7 @@ public abstract class JFXSettingFilterLocalTimeViewDesigner extends JFXSettingFi
         RequiredFieldValidator requiredItemValidator = new RequiredFieldValidator(Messages.getString("REQUIRED_FIELD_ERROR"));
         existErrorsChecker.addValidators(requiredItemValidator);
 
-        JFXTimePicker dpItem = new JFXTimePicker();
+        JFXTimeControl dpItem = new JFXTimeControl();
         HBox.setMargin(dpItem, new Insets(5, 0, 0, 0));
         dpItem.set24HourView(true);
         dpItem.setPrefWidth(200);

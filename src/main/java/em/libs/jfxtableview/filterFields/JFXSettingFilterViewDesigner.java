@@ -2,9 +2,18 @@ package em.libs.jfxtableview.filterFields;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.validation.base.ValidatorBase;
+import em.libs.jfxtableview.FilteredJFXComboBox;
+import em.libs.jfxtableview.FilteredJFXComboBoxWithClear;
+import em.libs.jfxtableview.JFXIconButton;
 import em.libs.jfxtableview.Messages;
+import em.libs.jfxtableview.font.FontAwesome;
+import em.libs.jfxtableview.models.FilterModeModel;
 import em.libs.jfxtableview.models.FilterModel;
 import em.libs.jfxtableview.models.FilterSettingModel;
+import em.libs.jfxtableview.models.FilterTypeModel;
+import em.libs.jfxtableview.validators.ExistErrorsChecker;
+import em.libs.jfxtableview.validators.ItemInListValidator;
+import em.libs.jfxtableview.validators.RequiredFilteredComboBoxValidator;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,22 +23,14 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import em.libs.jfxtableview.FilteredJFXComboBox;
-import em.libs.jfxtableview.FilteredJFXComboBoxWithClear;
-import em.libs.jfxtableview.JFXIconButton;
-import em.libs.jfxtableview.font.FontAwesome;
-import em.libs.jfxtableview.models.FilterModeModel;
-import em.libs.jfxtableview.models.FilterTypeModel;
-import em.libs.jfxtableview.validators.ExistErrorsChecker;
-import em.libs.jfxtableview.validators.ItemInListValidator;
-import em.libs.jfxtableview.validators.RequiredFilteredComboBoxValidator;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static em.libs.jfxtableview.Constants.*;
+import static em.libs.jfxtableview.Constants.ADD_ICON;
+import static em.libs.jfxtableview.Constants.DELETE_ICON;
 
 public abstract class JFXSettingFilterViewDesigner<T> extends StackPane {
 
@@ -81,7 +82,7 @@ public abstract class JFXSettingFilterViewDesigner<T> extends StackPane {
             cmbFilterMode.validate();
         });
         cmbFilterMode.textProperty().addListener((observable, oldValue, newValue) -> cmbFilterMode.validate());
-        VBox.setMargin(cmbFilterMode, new Insets(15,0,20,0));
+        VBox.setMargin(cmbFilterMode, new Insets(15, 0, 20, 0));
 
         vBoxMain.getChildren().add(cmbFilterMode);
     }
@@ -89,7 +90,7 @@ public abstract class JFXSettingFilterViewDesigner<T> extends StackPane {
     private void initHboxItem() {
         HBox hBoxItem = new HBox();
         hBoxItem.setSpacing(5);
-        VBox.setMargin(hBoxItem, new Insets(15,0,20,0));
+        VBox.setMargin(hBoxItem, new Insets(15, 0, 20, 0));
 
         FilterModel filter = new FilterModel();
         initFcbFilterType(hBoxItem, filter);
@@ -97,7 +98,7 @@ public abstract class JFXSettingFilterViewDesigner<T> extends StackPane {
         countItems++;
         filterMap.put(hBoxItem, filter);
 
-        if(countItems == 1) {
+        if (countItems == 1) {
             initBtnAddItem(hBoxItem);
         } else {
             initBtnDeleteItem(hBoxItem);
@@ -155,13 +156,13 @@ public abstract class JFXSettingFilterViewDesigner<T> extends StackPane {
     protected void setItems(Set<ObservableValue<T>> items) {
         this.items.clear();
 
-        if(items != null && !items.isEmpty()) {
-             this.items.addAll(items.stream()
-                     .filter(item -> item != null)
-                     .filter(item -> item.getValue() != null)
-                     .map(ObservableValue::getValue)
-                     .distinct()
-                     .collect(Collectors.toList()));
+        if (items != null && !items.isEmpty()) {
+            this.items.addAll(items.stream()
+                    .filter(item -> item != null)
+                    .filter(item -> item.getValue() != null)
+                    .map(ObservableValue::getValue)
+                    .distinct()
+                    .collect(Collectors.toList()));
         }
     }
 

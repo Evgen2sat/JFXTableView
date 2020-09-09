@@ -1,18 +1,18 @@
 package em.libs.jfxtableview.filterFields.filterFloat;
 
+import em.libs.jfxtableview.Debouncer;
 import em.libs.jfxtableview.JFXTableView;
 import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.columns.JFXFloatTableColumn;
+import em.libs.jfxtableview.enums.ClosingResult;
 import em.libs.jfxtableview.enums.FilterModeEnum;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
 import em.libs.jfxtableview.filterFields.commands.ConvertToValidFloatFilterCommand;
+import em.libs.jfxtableview.jfxSimpleDialogBox.JFXSimpleDialogBox;
 import em.libs.jfxtableview.models.FilterModel;
 import em.libs.jfxtableview.models.FilterSettingModel;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import em.libs.jfxtableview.Debouncer;
-import em.libs.jfxtableview.enums.ClosingResult;
-import em.libs.jfxtableview.jfxSimpleDialogBox.JFXSimpleDialogBox;
 
 import java.util.HashSet;
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static em.libs.jfxtableview.Constants.*;
+import static em.libs.jfxtableview.Constants.SETTING_FILTERING_ICON;
 
 public class JFXFilterFieldFloatViewImpl<T> extends JFXFilterFieldFloatViewDesigner {
 
@@ -36,8 +36,8 @@ public class JFXFilterFieldFloatViewImpl<T> extends JFXFilterFieldFloatViewDesig
 
     @Override
     public void updateFilterField() {
-        if(currentFilterType == FilterTypeEnum.SETTING_FILTERING) {
-            if(!settingFilterView.checkErrors()) {
+        if (currentFilterType == FilterTypeEnum.SETTING_FILTERING) {
+            if (!settingFilterView.checkErrors()) {
                 applyChangeFilterType(SETTING_FILTERING_ICON, Messages.getString("SETTING_FILTERING"), FilterTypeEnum.SETTING_FILTERING,
                         settingFilterView.getFilterMode(), settingFilterView.getFilteringValues());
             }

@@ -14,8 +14,8 @@ public class TotalFieldTableColumnView extends TotalFieldTableColumnViewDesigner
 
     public List<TotalTypeEnum> getSelectedTotalTypes() {
         List<TotalTypeEnum> result = new ArrayList<>();
-        for(var item : controls.entrySet()) {
-            if(item.getValue().isSelected()) {
+        for (var item : controls.entrySet()) {
+            if (item.getValue().isSelected()) {
                 result.add(item.getKey());
             }
         }

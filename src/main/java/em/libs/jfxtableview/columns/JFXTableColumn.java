@@ -1,9 +1,16 @@
 package em.libs.jfxtableview.columns;
 
 import com.jfoenix.controls.JFXButton;
+import em.libs.jfxtableview.JFXIconButton;
 import em.libs.jfxtableview.JFXTableView;
 import em.libs.jfxtableview.Messages;
+import em.libs.jfxtableview.cellFactories.JFXDefaultTableCell;
+import em.libs.jfxtableview.enums.ClosingResult;
 import em.libs.jfxtableview.enums.TotalTypeEnum;
+import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
+import em.libs.jfxtableview.font.FontAwesome;
+import em.libs.jfxtableview.jfxSimpleDialogBox.JFXSimpleDialogBox;
+import em.libs.jfxtableview.models.FilterTypeModel;
 import em.libs.jfxtableview.totalField.TotalFieldTableColumnView;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
@@ -14,19 +21,12 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.layout.*;
-import em.libs.jfxtableview.JFXIconButton;
-import em.libs.jfxtableview.cellFactories.JFXDefaultTableCell;
-import em.libs.jfxtableview.enums.ClosingResult;
-import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
-import em.libs.jfxtableview.font.FontAwesome;
-import em.libs.jfxtableview.jfxSimpleDialogBox.JFXSimpleDialogBox;
-import em.libs.jfxtableview.models.FilterTypeModel;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static em.libs.jfxtableview.Constants.*;
+import static em.libs.jfxtableview.Constants.TOTAL_ICON;
 
 public abstract class JFXTableColumn<S, T> extends TableColumn<S, T> {
 

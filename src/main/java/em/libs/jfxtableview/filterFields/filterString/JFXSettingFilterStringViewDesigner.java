@@ -1,13 +1,13 @@
 package em.libs.jfxtableview.filterFields.filterString;
 
 import com.jfoenix.validation.base.ValidatorBase;
+import em.libs.jfxtableview.FilteredJFXComboBoxWithClear;
 import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.filterFields.JFXSettingFilterViewDesigner;
 import em.libs.jfxtableview.models.FilterModel;
 import em.libs.jfxtableview.models.FilterSettingModel;
-import javafx.scene.Node;
-import em.libs.jfxtableview.FilteredJFXComboBoxWithClear;
 import em.libs.jfxtableview.validators.RequiredFilteredComboBoxValidator;
+import javafx.scene.Node;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -39,7 +39,7 @@ public abstract class JFXSettingFilterStringViewDesigner extends JFXSettingFilte
         fcbItem.textProperty().addListener((observable, oldValue, newValue) -> fcbItem.validate());
         fcbItem.textProperty().bindBidirectional(filter.textProperty());
 
-        if(validatorsMap == null) {
+        if (validatorsMap == null) {
             validatorsMap = new HashMap<>();
         }
 

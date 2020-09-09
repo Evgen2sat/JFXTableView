@@ -48,6 +48,10 @@ public class JFXFilterFieldBooleanViewImpl<T> extends JFXFilterFieldBooleanViewD
     }
 
     private boolean applyFilter(Boolean item, CheckBoxFilterEnum filterValue) {
+        if (filterValue == null) {
+            return true;
+        }
+
         switch (filterValue) {
             case ALL:
                 return true;

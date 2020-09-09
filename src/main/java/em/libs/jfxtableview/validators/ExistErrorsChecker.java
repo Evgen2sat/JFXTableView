@@ -19,6 +19,7 @@ public class ExistErrorsChecker {
 
     /**
      * Добавить валидаторы для проверки
+     *
      * @param validators валидаторы
      */
     public void addValidators(ValidatorBase... validators) {
@@ -27,6 +28,7 @@ public class ExistErrorsChecker {
 
     /**
      * Удалить валидаторы из списка
+     *
      * @param validators валидаторы
      */
     public void removeValidators(ValidatorBase... validators) {
@@ -35,11 +37,12 @@ public class ExistErrorsChecker {
 
     /**
      * Проверить наличие ошибок в валидаторах
+     *
      * @return true - при наличии ошибок, false - при отсутствии ошибок
      */
     public boolean checkErrors() {
-        for(ValidatorBase validator : validators) {
-            if(validator.getHasErrors()) {
+        for (ValidatorBase validator : validators) {
+            if (validator.getHasErrors()) {
                 error.set(true);
                 srcControl.set(validator.getSrcControl());
                 return true;

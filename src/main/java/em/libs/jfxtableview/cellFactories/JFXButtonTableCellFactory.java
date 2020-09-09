@@ -1,14 +1,14 @@
 package em.libs.jfxtableview.cellFactories;
 
 import com.jfoenix.controls.JFXButton;
+import em.libs.jfxtableview.JFXIconButton;
+import em.libs.jfxtableview.font.FontAwesome;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.text.Font;
 import javafx.util.Callback;
-import em.libs.jfxtableview.JFXIconButton;
-import em.libs.jfxtableview.font.FontAwesome;
 
 public class JFXButtonTableCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
 
@@ -48,7 +48,7 @@ public class JFXButtonTableCellFactory<S, T> implements Callback<TableColumn<S, 
             }
         };
 
-        if(action != null) {
+        if (action != null) {
             btn.setOnAction(event -> {
                 param.getTableView().getSelectionModel().select(cell.getTableRow().getIndex());
                 action.handle(event);

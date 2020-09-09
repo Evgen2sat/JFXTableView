@@ -1,9 +1,9 @@
 package em.libs.jfxtableview.filterFields.filterLong;
 
+import em.libs.jfxtableview.enums.FilterModeEnum;
 import em.libs.jfxtableview.models.FilterModel;
 import em.libs.jfxtableview.models.FilterSettingModel;
 import javafx.beans.value.ObservableValue;
-import em.libs.jfxtableview.enums.FilterModeEnum;
 
 import java.util.ArrayList;
 import java.util.List;

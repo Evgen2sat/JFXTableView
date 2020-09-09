@@ -1,11 +1,11 @@
 package em.libs.jfxtableview.models;
 
 import em.libs.jfxtableview.Messages;
+import em.libs.jfxtableview.enums.FilterModeEnum;
+import em.libs.jfxtableview.enums.FilterTypeEnum;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import em.libs.jfxtableview.enums.FilterModeEnum;
-import em.libs.jfxtableview.enums.FilterTypeEnum;
 
 import java.util.List;
 import java.util.stream.Collectors;

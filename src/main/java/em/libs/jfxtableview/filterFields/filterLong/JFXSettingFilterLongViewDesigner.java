@@ -1,22 +1,20 @@
 package em.libs.jfxtableview.filterFields.filterLong;
 
 import com.jfoenix.validation.base.ValidatorBase;
+import em.libs.jfxtableview.FilteredJFXComboBoxWithClear;
 import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.filterFields.JFXSettingFilterViewDesigner;
+import em.libs.jfxtableview.filterFields.commands.ConvertToValidLongFilterCommand;
 import em.libs.jfxtableview.models.FilterModel;
 import em.libs.jfxtableview.models.FilterSettingModel;
-import javafx.scene.Node;
-import em.libs.jfxtableview.FilteredJFXComboBoxWithClear;
-import em.libs.jfxtableview.filterFields.commands.ConvertToValidLongFilterCommand;
 import em.libs.jfxtableview.validators.LongRangeValidator;
 import em.libs.jfxtableview.validators.RequiredFilteredComboBoxValidator;
+import javafx.scene.Node;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static em.libs.jfxtableview.Constants.*;
 
 public abstract class JFXSettingFilterLongViewDesigner extends JFXSettingFilterViewDesigner<Long> {
     private Map<FilteredJFXComboBoxWithClear<Long>, List<ValidatorBase>> validatorsMap;
@@ -42,9 +40,9 @@ public abstract class JFXSettingFilterLongViewDesigner extends JFXSettingFilterV
             fcbItem.validate();
         });
         fcbItem.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue != null && !newValue.isEmpty()) {
+            if (newValue != null && !newValue.isEmpty()) {
                 String resultText = new ConvertToValidLongFilterCommand(newValue).execute();
-                if(!resultText.equals(newValue)) {
+                if (!resultText.equals(newValue)) {
                     fcbItem.textProperty().set(resultText);
                 }
             }
@@ -52,7 +50,7 @@ public abstract class JFXSettingFilterLongViewDesigner extends JFXSettingFilterV
         });
         fcbItem.textProperty().bindBidirectional(filter.textProperty());
 
-        if(validatorsMap == null) {
+        if (validatorsMap == null) {
             validatorsMap = new HashMap<>();
         }
 

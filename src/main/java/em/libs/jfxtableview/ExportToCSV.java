@@ -12,7 +12,8 @@ import java.util.stream.Collectors;
 
 public final class ExportToCSV {
 
-    private ExportToCSV() {}
+    private ExportToCSV() {
+    }
 
     static <T> String writeExcel(List<List<Object>> items) throws Exception {
 
@@ -32,7 +33,7 @@ public final class ExportToCSV {
                 File file = new File(saveFile.getAbsolutePath());
                 writer = new BufferedWriter(new FileWriter(file));
 
-                for(List<Object> item : items) {
+                for (List<Object> item : items) {
                     writer.write(item.stream().map(i -> i != null ? i.toString() : null).collect(Collectors.joining(";")));
                     writer.write("\n");
                 }

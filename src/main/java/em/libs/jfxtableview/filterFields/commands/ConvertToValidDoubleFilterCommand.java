@@ -18,7 +18,7 @@ public class ConvertToValidDoubleFilterCommand implements ConvertToValidFilterCo
         boolean isDot = false;
         char[] chars = text.toCharArray();
         for (int i = 0; i < chars.length; i++) {
-            if(chars[i] == '.' && !isDot && resultText.length() > 0) {
+            if (chars[i] == '.' && !isDot && resultText.length() > 0) {
                 resultText.append(chars[i]);
                 isDot = true;
             }

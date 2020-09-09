@@ -1,11 +1,11 @@
 package em.libs.jfxtableview.columns;
 
-import javafx.beans.value.ObservableValue;
 import em.libs.jfxtableview.JFXTableView;
 import em.libs.jfxtableview.enums.TotalTypeEnum;
 import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
 import em.libs.jfxtableview.filterFields.filterBoolean.JFXFilterFieldBooleanViewImpl;
 import em.libs.jfxtableview.models.FilterTypeModel;
+import javafx.beans.value.ObservableValue;
 
 import java.util.HashMap;
 import java.util.List;

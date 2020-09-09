@@ -25,20 +25,22 @@ public class FilteredJFXComboBox<T> extends JFXComboBox<T> {
     public boolean validate() {
         return super.validate();
     }
+
     private final ObjectProperty<T> selectedValueProperty = new SimpleObjectProperty<>();
     private ObservableList<T> data;
+
     public void setObservableList(ObservableList<T> data) {
         this.data = data;
     }
 
-    public FilteredJFXComboBox(){
+    public FilteredJFXComboBox() {
         this(
                 (typedText, itemToCompare)
                         -> itemToCompare.toString().toLowerCase().contains(typedText.toLowerCase())
         );
     }
 
-    public FilteredJFXComboBox(ObservableList<T> observableList){
+    public FilteredJFXComboBox(ObservableList<T> observableList) {
         this(
                 (typedText, itemToCompare)
                         -> itemToCompare.toString().toLowerCase().contains(typedText.toLowerCase())
@@ -46,7 +48,7 @@ public class FilteredJFXComboBox<T> extends JFXComboBox<T> {
         setObservableList(observableList);
     }
 
-    public FilteredJFXComboBox(String promptText){
+    public FilteredJFXComboBox(String promptText) {
         this(
                 (typedText, itemToCompare)
                         -> itemToCompare.toString().toLowerCase().startsWith(typedText.toLowerCase())
@@ -66,28 +68,26 @@ public class FilteredJFXComboBox<T> extends JFXComboBox<T> {
         });
         setEditable(true);
         getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue == null || newValue.trim().isEmpty()) {
+            if (newValue == null || newValue.trim().isEmpty()) {
                 setValue(null);
             }
         });
         setOnHidden(event -> {
-            if(getSelectionModel().getSelectedIndex() >= 0) {
+            if (getSelectionModel().getSelectedIndex() >= 0) {
                 selectedValueProperty.setValue(getSelectionModel().getSelectedItem());
                 getEditor().setText(getSelectionModel().getSelectedItem() != null ? getSelectionModel().getSelectedItem().toString() : getSelectedValue().toString());
-            }
-            else {
+            } else {
                 setSelectedValue(null);
                 //getEditor().setText(null);
             }
         });
         this.setOnShowing(event -> {
             T activeItem = getSelectedValue();
-            if(activeItem != null){
+            if (activeItem != null) {
                 setItems(data);
                 getSelectionModel().select(activeItem);
                 getEditor().selectAll();
-            }
-            else if(getEditor().getText() == null || getEditor().getText().equals("")){
+            } else if (getEditor().getText() == null || getEditor().getText().equals("")) {
                 this.setItems(data);
             }
         });
@@ -95,6 +95,7 @@ public class FilteredJFXComboBox<T> extends JFXComboBox<T> {
         this.addEventHandler(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>() {
             private boolean moveCaretToPos = false;
             private int caretPos;
+
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.UP) {
@@ -133,9 +134,9 @@ public class FilteredJFXComboBox<T> extends JFXComboBox<T> {
                         getEditor().setText(null);
                     }*/
                     return;
-                } else if(event.getCode()==KeyCode.SPACE) {
+                } else if (event.getCode() == KeyCode.SPACE) {
                     getEditor().setText(getEditor().getText().trim());
-                    if (getEditor().getText() != null && getSelectedValue()==null) {
+                    if (getEditor().getText() != null && getSelectedValue() == null) {
                         moveCaretToPos = true;
                         moveCaret(getEditor().getText().length());
                     }
@@ -153,7 +154,7 @@ public class FilteredJFXComboBox<T> extends JFXComboBox<T> {
                 }
                 setItems(list);
                 if (!list.isEmpty()) {
-                    if(!isShowing())
+                    if (!isShowing())
                         show();
                     //выбираем первую строку в списке по умолчанию
                     getSelectionModel().selectFirst();
@@ -164,6 +165,7 @@ public class FilteredJFXComboBox<T> extends JFXComboBox<T> {
                 }
                 moveCaret(t.length());
             }
+
             private void moveCaret(int textLength) {
                 if (caretPos == -1) {
                     getEditor().positionCaret(textLength);
@@ -175,9 +177,10 @@ public class FilteredJFXComboBox<T> extends JFXComboBox<T> {
         });
     }
 
-    public T getSelectedValue(){
+    public T getSelectedValue() {
         return selectedValueProperty.getValue();
     }
+
     public void setSelectedValue(T selectedValue) {
         setValue(selectedValue);
         selectedValueProperty.setValue(selectedValue);
@@ -186,6 +189,7 @@ public class FilteredJFXComboBox<T> extends JFXComboBox<T> {
     public ObjectProperty<T> selectedValueProperty() {
         return selectedValueProperty;
     }
+
     public StringProperty textProperty() {
         return getEditor().textProperty();
     }

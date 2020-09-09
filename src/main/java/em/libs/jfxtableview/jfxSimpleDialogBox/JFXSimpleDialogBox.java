@@ -1,11 +1,10 @@
 package em.libs.jfxtableview.jfxSimpleDialogBox;
 
 import com.jfoenix.controls.JFXButton;
-import em.libs.jfxtableview.Constants;
 import em.libs.jfxtableview.Messages;
+import em.libs.jfxtableview.jfxDialogBox.JFXDialogBox;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import em.libs.jfxtableview.jfxDialogBox.JFXDialogBox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +28,7 @@ public class JFXSimpleDialogBox extends JFXDialogBox {
         }
     }
 
-    protected void ok()
-    {
+    protected void ok() {
         close();
     }
 

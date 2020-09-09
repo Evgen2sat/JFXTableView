@@ -1,17 +1,17 @@
 package em.libs.jfxtableview.filterFields.filterString;
 
+import em.libs.jfxtableview.Debouncer;
 import em.libs.jfxtableview.JFXTableView;
 import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.columns.JFXStringTableColumn;
+import em.libs.jfxtableview.enums.ClosingResult;
 import em.libs.jfxtableview.enums.FilterModeEnum;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
+import em.libs.jfxtableview.jfxSimpleDialogBox.JFXSimpleDialogBox;
 import em.libs.jfxtableview.models.FilterModel;
 import em.libs.jfxtableview.models.FilterSettingModel;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import em.libs.jfxtableview.Debouncer;
-import em.libs.jfxtableview.enums.ClosingResult;
-import em.libs.jfxtableview.jfxSimpleDialogBox.JFXSimpleDialogBox;
 
 import java.util.HashSet;
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static em.libs.jfxtableview.Constants.*;
+import static em.libs.jfxtableview.Constants.SETTING_FILTERING_ICON;
 
 public class JFXFilterFieldStringViewImpl<T> extends JFXFilterFieldStringViewDesigner {
 
@@ -36,8 +36,8 @@ public class JFXFilterFieldStringViewImpl<T> extends JFXFilterFieldStringViewDes
 
     @Override
     public void updateFilterField() {
-        if(currentFilterType == FilterTypeEnum.SETTING_FILTERING) {
-            if(!settingFilterView.checkErrors()) {
+        if (currentFilterType == FilterTypeEnum.SETTING_FILTERING) {
+            if (!settingFilterView.checkErrors()) {
                 applyChangeFilterType(SETTING_FILTERING_ICON, Messages.getString("SETTING_FILTERING"), FilterTypeEnum.SETTING_FILTERING,
                         settingFilterView.getFilterMode(), settingFilterView.getFilteringValues());
             }
@@ -81,7 +81,7 @@ public class JFXFilterFieldStringViewImpl<T> extends JFXFilterFieldStringViewDes
 
     private boolean applyFilter(String item, String filterText, FilterTypeEnum filterType, FilterModeEnum filterMode, List<FilterModel> filterValues) {
         if ((filterType != FilterTypeEnum.SETTING_FILTERING && (filterText == null || filterText.isEmpty()))
-            || (filterType == FilterTypeEnum.SETTING_FILTERING && (filterValues == null || filterValues.isEmpty()))) {
+                || (filterType == FilterTypeEnum.SETTING_FILTERING && (filterValues == null || filterValues.isEmpty()))) {
             return true;
         }
 
@@ -137,8 +137,8 @@ public class JFXFilterFieldStringViewImpl<T> extends JFXFilterFieldStringViewDes
     }
 
     private boolean applySettingAllFilter(String item, List<FilterModel> filterValues) {
-        for(FilterModel filter : filterValues) {
-            if(!applyFilter(item, filter.getText(), filter.getType().getType(), null, filterValues)) {
+        for (FilterModel filter : filterValues) {
+            if (!applyFilter(item, filter.getText(), filter.getType().getType(), null, filterValues)) {
                 return false;
             }
         }
@@ -147,8 +147,8 @@ public class JFXFilterFieldStringViewImpl<T> extends JFXFilterFieldStringViewDes
     }
 
     private boolean applySettingAnyFilter(String item, List<FilterModel> filterValues) {
-        for(FilterModel filter : filterValues) {
-            if(applyFilter(item, filter.getText(), filter.getType().getType(), null, filterValues)) {
+        for (FilterModel filter : filterValues) {
+            if (applyFilter(item, filter.getText(), filter.getType().getType(), null, filterValues)) {
                 return true;
             }
         }
@@ -159,7 +159,7 @@ public class JFXFilterFieldStringViewImpl<T> extends JFXFilterFieldStringViewDes
     @Override
     protected void btnCustom_onAction(ActionEvent event) {
         //открыть контрол настройки фильтрации
-        if(dialogBox == null) {
+        if (dialogBox == null) {
             settingFilterView = new JFXSettingFilterStringViewImpl(new FilterSettingModel(column.getFilterTypes()));
             dialogBox = new JFXSimpleDialogBox(settingFilterView);
         }
@@ -167,8 +167,8 @@ public class JFXFilterFieldStringViewImpl<T> extends JFXFilterFieldStringViewDes
         settingFilterView.setItems(new HashSet<>(column.getValues().keySet()));
 
         dialogBox.setOnClosing(closingEvent -> {
-            if(closingEvent.getResult() == ClosingResult.OK) {
-                if(settingFilterView.checkErrors()) {
+            if (closingEvent.getResult() == ClosingResult.OK) {
+                if (settingFilterView.checkErrors()) {
                     closingEvent.setCancel(true);
                     return;
                 }

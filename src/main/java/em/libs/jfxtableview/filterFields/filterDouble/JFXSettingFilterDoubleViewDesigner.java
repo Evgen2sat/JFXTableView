@@ -1,22 +1,20 @@
 package em.libs.jfxtableview.filterFields.filterDouble;
 
 import com.jfoenix.validation.base.ValidatorBase;
+import em.libs.jfxtableview.FilteredJFXComboBoxWithClear;
 import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.filterFields.JFXSettingFilterViewDesigner;
 import em.libs.jfxtableview.filterFields.commands.ConvertToValidDoubleFilterCommand;
 import em.libs.jfxtableview.models.FilterModel;
 import em.libs.jfxtableview.models.FilterSettingModel;
-import javafx.scene.Node;
-import em.libs.jfxtableview.FilteredJFXComboBoxWithClear;
 import em.libs.jfxtableview.validators.DoubleRangeValidator;
 import em.libs.jfxtableview.validators.RequiredFilteredComboBoxValidator;
+import javafx.scene.Node;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static em.libs.jfxtableview.Constants.*;
 
 public abstract class JFXSettingFilterDoubleViewDesigner extends JFXSettingFilterViewDesigner<Double> {
     private Map<FilteredJFXComboBoxWithClear<Double>, List<ValidatorBase>> validatorsMap;
@@ -52,7 +50,7 @@ public abstract class JFXSettingFilterDoubleViewDesigner extends JFXSettingFilte
         });
         fcbItem.textProperty().bindBidirectional(filter.textProperty());
 
-        if(validatorsMap == null) {
+        if (validatorsMap == null) {
             validatorsMap = new HashMap<>();
         }
 

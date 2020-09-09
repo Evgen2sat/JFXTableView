@@ -2,10 +2,14 @@ package em.libs.jfxtableview.filterFields.filterString;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPopup;
+import em.libs.jfxtableview.JFXIconButton;
 import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.enums.FilterModeEnum;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
+import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
+import em.libs.jfxtableview.font.FontAwesome;
 import em.libs.jfxtableview.models.FilterModel;
+import em.libs.jfxtableview.models.FilterTypeModel;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -18,14 +22,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import em.libs.jfxtableview.JFXIconButton;
-import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
-import em.libs.jfxtableview.font.FontAwesome;
-import em.libs.jfxtableview.models.FilterTypeModel;
 
 import java.util.List;
 
-import static em.libs.jfxtableview.Constants.*;
+import static em.libs.jfxtableview.Constants.CLOSE_ICON;
+import static em.libs.jfxtableview.Constants.ERROR_ICON;
 
 public abstract class JFXFilterFieldStringViewDesigner extends JFXFilterFieldView {
 
@@ -66,7 +67,7 @@ public abstract class JFXFilterFieldStringViewDesigner extends JFXFilterFieldVie
         vBoxFilterType.setPrefHeight(200);
         vBoxFilterType.setPrefWidth(215);
 
-        for(FilterTypeModel filterType : filterTypes) {
+        for (FilterTypeModel filterType : filterTypes) {
             JFXButton changeFilterTypeButton = createChangeFilterTypeButton(filterType.getName(), filterType.getIcon(), filterType.getDescription(), filterType.getType());
             vBoxFilterType.getChildren().add(changeFilterTypeButton);
         }
@@ -83,7 +84,7 @@ public abstract class JFXFilterFieldStringViewDesigner extends JFXFilterFieldVie
         button.getStyleClass().add("jfx-without-radius-button");
         button.setTooltip(new Tooltip(textTooltip));
 
-        if(type == FilterTypeEnum.SETTING_FILTERING) {
+        if (type == FilterTypeEnum.SETTING_FILTERING) {
             button.setOnAction(event -> {
                 popupChangeFilterType.hide();
                 btnCustom_onAction(event);
@@ -102,7 +103,7 @@ public abstract class JFXFilterFieldStringViewDesigner extends JFXFilterFieldVie
     }
 
     protected final void applyChangeFilterType(String icon, String tooltipText, FilterTypeEnum filterType, FilterModeEnum filterMode, List<FilterModel> filterValues) {
-        if(filterType == FilterTypeEnum.SETTING_FILTERING) {
+        if (filterType == FilterTypeEnum.SETTING_FILTERING) {
             txtSearchField.clear();
             spSearchField.setDisable(true);
         } else {
@@ -171,18 +172,18 @@ public abstract class JFXFilterFieldStringViewDesigner extends JFXFilterFieldVie
     }
 
     protected void setError(String errorText) {
-        if(lblError == null) {
+        if (lblError == null) {
             initLblError();
         }
 
         lblError.getTooltip().setText(errorText);
-        if(!hBoxFilterPane.getChildren().get(hBoxFilterPane.getChildren().size() - 1).equals(lblError)) {
+        if (!hBoxFilterPane.getChildren().get(hBoxFilterPane.getChildren().size() - 1).equals(lblError)) {
             hBoxFilterPane.getChildren().add(lblError);
         }
     }
 
     protected void clearError() {
-        if(lblError != null) {
+        if (lblError != null) {
             lblError.getTooltip().setText(null);
             hBoxFilterPane.getChildren().remove(lblError);
         }

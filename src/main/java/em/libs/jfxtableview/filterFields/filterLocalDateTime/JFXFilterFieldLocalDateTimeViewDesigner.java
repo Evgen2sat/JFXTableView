@@ -2,9 +2,16 @@ package em.libs.jfxtableview.filterFields.filterLocalDateTime;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPopup;
-import em.libs.jfxtableview.*;
+import em.libs.jfxtableview.JFXDateControl;
+import em.libs.jfxtableview.JFXIconButton;
+import em.libs.jfxtableview.JFXTimeControl;
+import em.libs.jfxtableview.Messages;
+import em.libs.jfxtableview.enums.FilterModeEnum;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
+import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
+import em.libs.jfxtableview.font.FontAwesome;
 import em.libs.jfxtableview.models.FilterModel;
+import em.libs.jfxtableview.models.FilterTypeModel;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,17 +21,14 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import em.libs.jfxtableview.enums.FilterModeEnum;
-import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
-import em.libs.jfxtableview.font.FontAwesome;
-import em.libs.jfxtableview.models.FilterTypeModel;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-import static em.libs.jfxtableview.Constants.*;
+import static em.libs.jfxtableview.Constants.CLOSE_ICON;
+import static em.libs.jfxtableview.Constants.ERROR_ICON;
 
 public abstract class JFXFilterFieldLocalDateTimeViewDesigner extends JFXFilterFieldView {
 
@@ -217,12 +221,12 @@ public abstract class JFXFilterFieldLocalDateTimeViewDesigner extends JFXFilterF
     }
 
     protected void setError(String errorText) {
-        if(lblError == null) {
+        if (lblError == null) {
             initLblError();
         }
 
         lblError.getTooltip().setText(errorText);
-        if(!hBoxFilterPane.getChildren().get(hBoxFilterPane.getChildren().size() - 1).equals(lblError)) {
+        if (!hBoxFilterPane.getChildren().get(hBoxFilterPane.getChildren().size() - 1).equals(lblError)) {
             hBoxFilterPane.getChildren().add(lblError);
         }
     }

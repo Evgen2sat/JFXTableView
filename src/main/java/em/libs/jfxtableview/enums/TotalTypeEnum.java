@@ -1,6 +1,5 @@
 package em.libs.jfxtableview.enums;
 
-import em.libs.jfxtableview.Constants;
 import em.libs.jfxtableview.Messages;
 
 public enum TotalTypeEnum {

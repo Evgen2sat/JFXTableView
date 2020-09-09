@@ -1,22 +1,20 @@
 package em.libs.jfxtableview.filterFields.filterFloat;
 
 import com.jfoenix.validation.base.ValidatorBase;
+import em.libs.jfxtableview.FilteredJFXComboBoxWithClear;
 import em.libs.jfxtableview.Messages;
+import em.libs.jfxtableview.filterFields.JFXSettingFilterViewDesigner;
 import em.libs.jfxtableview.filterFields.commands.ConvertToValidFloatFilterCommand;
 import em.libs.jfxtableview.models.FilterModel;
 import em.libs.jfxtableview.models.FilterSettingModel;
-import javafx.scene.Node;
-import em.libs.jfxtableview.FilteredJFXComboBoxWithClear;
-import em.libs.jfxtableview.filterFields.JFXSettingFilterViewDesigner;
 import em.libs.jfxtableview.validators.FloatRangeValidator;
 import em.libs.jfxtableview.validators.RequiredFilteredComboBoxValidator;
+import javafx.scene.Node;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static em.libs.jfxtableview.Constants.*;
 
 public abstract class JFXSettingFilterFloatViewDesigner extends JFXSettingFilterViewDesigner<Float> {
     private Map<FilteredJFXComboBoxWithClear<Float>, List<ValidatorBase>> validatorsMap;
@@ -53,7 +51,7 @@ public abstract class JFXSettingFilterFloatViewDesigner extends JFXSettingFilter
         });
         fcbItem.textProperty().bindBidirectional(filter.textProperty());
 
-        if(validatorsMap == null) {
+        if (validatorsMap == null) {
             validatorsMap = new HashMap<>();
         }
 

@@ -1,16 +1,15 @@
 package em.libs.jfxtableview.filterFields.filterInteger;
 
 import com.jfoenix.validation.base.ValidatorBase;
-import em.libs.jfxtableview.Constants;
+import em.libs.jfxtableview.FilteredJFXComboBoxWithClear;
 import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.filterFields.JFXSettingFilterViewDesigner;
+import em.libs.jfxtableview.filterFields.commands.ConvertToValidIntegerFilterCommand;
 import em.libs.jfxtableview.models.FilterModel;
 import em.libs.jfxtableview.models.FilterSettingModel;
-import javafx.scene.Node;
-import em.libs.jfxtableview.FilteredJFXComboBoxWithClear;
-import em.libs.jfxtableview.filterFields.commands.ConvertToValidIntegerFilterCommand;
 import em.libs.jfxtableview.validators.IntegerRangeValidator;
 import em.libs.jfxtableview.validators.RequiredFilteredComboBoxValidator;
+import javafx.scene.Node;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -41,9 +40,9 @@ public abstract class JFXSettingFilterIntegerViewDesigner extends JFXSettingFilt
             fcbItem.validate();
         });
         fcbItem.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue != null && !newValue.isEmpty()) {
+            if (newValue != null && !newValue.isEmpty()) {
                 String resultText = new ConvertToValidIntegerFilterCommand(newValue).execute();
-                if(!resultText.equals(newValue)) {
+                if (!resultText.equals(newValue)) {
                     fcbItem.textProperty().set(resultText);
                 }
             }
@@ -51,7 +50,7 @@ public abstract class JFXSettingFilterIntegerViewDesigner extends JFXSettingFilt
         });
         fcbItem.textProperty().bindBidirectional(filter.textProperty());
 
-        if(validatorsMap == null) {
+        if (validatorsMap == null) {
             validatorsMap = new HashMap<>();
         }
 

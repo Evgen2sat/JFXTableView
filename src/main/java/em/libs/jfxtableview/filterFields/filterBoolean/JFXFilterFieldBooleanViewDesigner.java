@@ -2,9 +2,9 @@ package em.libs.jfxtableview.filterFields.filterBoolean;
 
 import com.jfoenix.controls.JFXComboBox;
 import em.libs.jfxtableview.enums.CheckBoxFilterEnum;
+import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
-import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
 
 public abstract class JFXFilterFieldBooleanViewDesigner extends JFXFilterFieldView {
 

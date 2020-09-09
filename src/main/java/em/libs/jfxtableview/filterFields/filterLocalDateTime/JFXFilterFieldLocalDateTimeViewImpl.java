@@ -3,13 +3,13 @@ package em.libs.jfxtableview.filterFields.filterLocalDateTime;
 import em.libs.jfxtableview.JFXTableView;
 import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.columns.JFXLocalDateTimeTableColumn;
+import em.libs.jfxtableview.enums.ClosingResult;
 import em.libs.jfxtableview.enums.FilterModeEnum;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
+import em.libs.jfxtableview.jfxSimpleDialogBox.JFXSimpleDialogBox;
 import em.libs.jfxtableview.models.FilterModel;
 import em.libs.jfxtableview.models.FilterSettingModel;
 import javafx.event.ActionEvent;
-import em.libs.jfxtableview.enums.ClosingResult;
-import em.libs.jfxtableview.jfxSimpleDialogBox.JFXSimpleDialogBox;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static em.libs.jfxtableview.Constants.*;
+import static em.libs.jfxtableview.Constants.SETTING_FILTERING_ICON;
 
 public class JFXFilterFieldLocalDateTimeViewImpl<T> extends JFXFilterFieldLocalDateTimeViewDesigner {
 
@@ -36,8 +36,8 @@ public class JFXFilterFieldLocalDateTimeViewImpl<T> extends JFXFilterFieldLocalD
 
     @Override
     public void updateFilterField() {
-        if(currentFilterType == FilterTypeEnum.SETTING_FILTERING) {
-            if(!settingFilterView.checkErrors()) {
+        if (currentFilterType == FilterTypeEnum.SETTING_FILTERING) {
+            if (!settingFilterView.checkErrors()) {
                 applyChangeFilterType(SETTING_FILTERING_ICON, Messages.getString("SETTING_FILTERING"), FilterTypeEnum.SETTING_FILTERING,
                         settingFilterView.getFilterMode(), settingFilterView.getFilteringValues());
             }
@@ -119,7 +119,7 @@ public class JFXFilterFieldLocalDateTimeViewImpl<T> extends JFXFilterFieldLocalD
 
     private boolean applySettingAllFilter(LocalDateTime item, List<FilterModel> filterValues) {
         for (FilterModel filter : filterValues) {
-            if (!applyFilter(item, (LocalDateTime)filter.getValue(), filter.getType().getType(), null, filterValues)) {
+            if (!applyFilter(item, (LocalDateTime) filter.getValue(), filter.getType().getType(), null, filterValues)) {
                 return false;
             }
         }
@@ -129,7 +129,7 @@ public class JFXFilterFieldLocalDateTimeViewImpl<T> extends JFXFilterFieldLocalD
 
     private boolean applySettingAnyFilter(LocalDateTime item, List<FilterModel> filterValues) {
         for (FilterModel filter : filterValues) {
-            if (applyFilter(item, (LocalDateTime)filter.getValue(), filter.getType().getType(), null, filterValues)) {
+            if (applyFilter(item, (LocalDateTime) filter.getValue(), filter.getType().getType(), null, filterValues)) {
                 return true;
             }
         }

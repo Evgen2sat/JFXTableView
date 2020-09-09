@@ -56,7 +56,7 @@ public class JFXTimeControl extends JFXTimePicker {
     }
 
     private String getValidStringForLocalTime(String text) {
-        if(text == null || text.trim().isEmpty()) {
+        if (text == null || text.trim().isEmpty()) {
             return null;
         }
 
@@ -67,19 +67,19 @@ public class JFXTimeControl extends JFXTimePicker {
                 continue;
             }
 
-            if(resultText.length() == 5) {
+            if (resultText.length() == 5) {
                 break;
             }
 
             resultText.append(chars[i]);
 
-            if(resultText.length() == 2) {
-                if(Integer.valueOf(resultText.substring(0, 2)) > 24) {
+            if (resultText.length() == 2) {
+                if (Integer.valueOf(resultText.substring(0, 2)) > 24) {
                     resultText = resultText.replace(0, 2, "24");
                 }
                 resultText.append(":");
-            } else if(resultText.length() == 5) {
-                if(Integer.valueOf(resultText.substring(3, 5)) > 59) {
+            } else if (resultText.length() == 5) {
+                if (Integer.valueOf(resultText.substring(3, 5)) > 59) {
                     resultText = resultText.replace(3, 5, "59");
                 }
             }

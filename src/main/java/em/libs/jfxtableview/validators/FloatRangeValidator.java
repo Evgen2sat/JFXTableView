@@ -2,8 +2,8 @@ package em.libs.jfxtableview.validators;
 
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.base.ValidatorBase;
-import em.libs.jfxtableview.FilteredJFXComboBoxWithClear;
 import em.libs.jfxtableview.FilteredJFXComboBox;
+import em.libs.jfxtableview.FilteredJFXComboBoxWithClear;
 
 public class FloatRangeValidator extends ValidatorBase {
 

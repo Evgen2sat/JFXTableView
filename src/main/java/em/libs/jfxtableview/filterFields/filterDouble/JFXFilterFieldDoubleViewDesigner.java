@@ -3,10 +3,12 @@ package em.libs.jfxtableview.filterFields.filterDouble;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPopup;
 import em.libs.jfxtableview.Constants;
+import em.libs.jfxtableview.JFXIconButton;
 import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.enums.FilterModeEnum;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
 import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
+import em.libs.jfxtableview.font.FontAwesome;
 import em.libs.jfxtableview.models.FilterModel;
 import em.libs.jfxtableview.models.FilterTypeModel;
 import javafx.beans.value.ObservableValue;
@@ -21,8 +23,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import em.libs.jfxtableview.JFXIconButton;
-import em.libs.jfxtableview.font.FontAwesome;
 
 import java.util.List;
 
@@ -177,12 +177,12 @@ public abstract class JFXFilterFieldDoubleViewDesigner extends JFXFilterFieldVie
     }
 
     protected void setError(String errorText) {
-        if(lblError == null) {
+        if (lblError == null) {
             initLblError();
         }
 
         lblError.getTooltip().setText(errorText);
-        if(!hBoxFilterPane.getChildren().get(hBoxFilterPane.getChildren().size() - 1).equals(lblError)) {
+        if (!hBoxFilterPane.getChildren().get(hBoxFilterPane.getChildren().size() - 1).equals(lblError)) {
             hBoxFilterPane.getChildren().add(lblError);
         }
     }

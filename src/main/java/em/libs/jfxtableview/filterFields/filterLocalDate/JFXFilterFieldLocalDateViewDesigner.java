@@ -1,13 +1,15 @@
 package em.libs.jfxtableview.filterFields.filterLocalDate;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPopup;
 import em.libs.jfxtableview.Constants;
+import em.libs.jfxtableview.JFXDateControl;
+import em.libs.jfxtableview.JFXIconButton;
 import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.enums.FilterModeEnum;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
 import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
+import em.libs.jfxtableview.font.FontAwesome;
 import em.libs.jfxtableview.models.FilterModel;
 import em.libs.jfxtableview.models.FilterTypeModel;
 import javafx.beans.value.ObservableValue;
@@ -20,8 +22,6 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import em.libs.jfxtableview.JFXIconButton;
-import em.libs.jfxtableview.font.FontAwesome;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -30,7 +30,7 @@ public abstract class JFXFilterFieldLocalDateViewDesigner extends JFXFilterField
 
     private StackPane background;
     private HBox hBoxFilterPane;
-    protected JFXDatePicker dpSearchField;
+    protected JFXDateControl dpSearchField;
     private JFXButton btnClear;
     protected StackPane spSearchField;
     protected JFXButton btnChangeFilterType;
@@ -134,7 +134,7 @@ public abstract class JFXFilterFieldLocalDateViewDesigner extends JFXFilterField
     }
 
     private void initDpSearchField() {
-        dpSearchField = new JFXDatePicker();
+        dpSearchField = new JFXDateControl();
         dpSearchField.setMinWidth(10);
         dpSearchField.valueProperty().addListener(this::dpSearchFieldChangeListener);
 
@@ -170,12 +170,12 @@ public abstract class JFXFilterFieldLocalDateViewDesigner extends JFXFilterField
     }
 
     protected void setError(String errorText) {
-        if(lblError == null) {
+        if (lblError == null) {
             initLblError();
         }
 
         lblError.getTooltip().setText(errorText);
-        if(!hBoxFilterPane.getChildren().get(hBoxFilterPane.getChildren().size() - 1).equals(lblError)) {
+        if (!hBoxFilterPane.getChildren().get(hBoxFilterPane.getChildren().size() - 1).equals(lblError)) {
             hBoxFilterPane.getChildren().add(lblError);
         }
     }

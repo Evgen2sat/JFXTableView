@@ -1,9 +1,9 @@
 package em.libs.jfxtableview.filterFields.filterLocalDateTime;
 
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXTimePicker;
 import com.jfoenix.validation.RequiredFieldValidator;
 import com.jfoenix.validation.base.ValidatorBase;
+import em.libs.jfxtableview.JFXDateControl;
+import em.libs.jfxtableview.JFXTimeControl;
 import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.filterFields.JFXSettingFilterViewDesigner;
 import em.libs.jfxtableview.models.FilterModel;
@@ -20,12 +20,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static em.libs.jfxtableview.Constants.*;
-
 public abstract class JFXSettingFilterLocalDateTimeViewDesigner extends JFXSettingFilterViewDesigner<LocalDateTime> {
     private Map<Node, List<ValidatorBase>> validatorsMap;
-    private JFXDatePicker dpItem;
-    private JFXTimePicker tpItem;
+    private JFXDateControl dpItem;
+    private JFXTimeControl tpItem;
 
     public JFXSettingFilterLocalDateTimeViewDesigner(FilterSettingModel viewModel) {
         super(viewModel);
@@ -45,8 +43,8 @@ public abstract class JFXSettingFilterLocalDateTimeViewDesigner extends JFXSetti
         RequiredFieldValidator requiredItemValidator = new RequiredFieldValidator(Messages.getString("REQUIRED_FIELD_ERROR"));
         existErrorsChecker.addValidators(requiredItemValidator);
 
-        dpItem = new JFXDatePicker();
-        HBox.setMargin(dpItem, new Insets(5,0,0,0));
+        dpItem = new JFXDateControl();
+        HBox.setMargin(dpItem, new Insets(5, 0, 0, 0));
         dpItem.setPrefWidth(150);
         dpItem.setMaxWidth(150);
         dpItem.setPromptText(Messages.getString("DATE"));
@@ -70,9 +68,9 @@ public abstract class JFXSettingFilterLocalDateTimeViewDesigner extends JFXSetti
         RequiredFieldValidator requiredItemValidator = new RequiredFieldValidator(Messages.getString("REQUIRED_FIELD_ERROR"));
         existErrorsChecker.addValidators(requiredItemValidator);
 
-        tpItem = new JFXTimePicker();
+        tpItem = new JFXTimeControl();
         tpItem.set24HourView(true);
-        HBox.setMargin(tpItem, new Insets(5,0,0,0));
+        HBox.setMargin(tpItem, new Insets(5, 0, 0, 0));
         tpItem.setPrefWidth(150);
         tpItem.setMaxWidth(150);
         tpItem.setPromptText(Messages.getString("TIME"));

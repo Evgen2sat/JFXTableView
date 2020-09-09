@@ -9,7 +9,8 @@ public class RequiredFilteredComboBoxValidator extends ValidatorBase {
         super(message);
     }
 
-    public RequiredFilteredComboBoxValidator() { }
+    public RequiredFilteredComboBoxValidator() {
+    }
 
     @Override
     protected void eval() {
@@ -17,7 +18,7 @@ public class RequiredFilteredComboBoxValidator extends ValidatorBase {
         Object value = comboField.getSelectedValue();
         String textValue = comboField.textProperty().get();
 
-        if(value == null && (textValue == null || textValue.isEmpty())) {
+        if (value == null && (textValue == null || textValue.isEmpty())) {
             hasErrors.set(true);
         } else {
             hasErrors.set(false);

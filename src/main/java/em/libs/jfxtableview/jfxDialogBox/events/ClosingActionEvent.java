@@ -1,7 +1,7 @@
 package em.libs.jfxtableview.jfxDialogBox.events;
 
-import javafx.event.ActionEvent;
 import em.libs.jfxtableview.enums.ClosingResult;
+import javafx.event.ActionEvent;
 
 public class ClosingActionEvent extends ActionEvent {
 
@@ -13,11 +13,11 @@ public class ClosingActionEvent extends ActionEvent {
         this.result = result;
     }
 
-    public boolean isCancel(){
+    public boolean isCancel() {
         return isCancel;
     }
 
-    public void setCancel(boolean value){
+    public void setCancel(boolean value) {
         isCancel = value;
     }
 

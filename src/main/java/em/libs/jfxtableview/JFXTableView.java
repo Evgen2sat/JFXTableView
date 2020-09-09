@@ -1,8 +1,11 @@
 package em.libs.jfxtableview;
 
+import em.libs.jfxtableview.columns.JFXTableColumn;
+import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
+import em.libs.jfxtableview.font.FontAwesome;
+import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Observable;
 import io.reactivex.Observer;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -13,18 +16,16 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
-import em.libs.jfxtableview.columns.JFXTableColumn;
-import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
-import em.libs.jfxtableview.font.FontAwesome;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static em.libs.jfxtableview.Constants.*;
 
 public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscribe<String> {
     private StackPane background = null;
@@ -80,7 +81,7 @@ public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscri
                     @Override
                     protected void updateItem(Integer item, boolean empty) {
                         super.updateItem(item, empty);
-                        if(!empty) {
+                        if (!empty) {
                             setText(String.valueOf(getTableRow().getIndex() + 1));
                             setStyle("-fx-background-color: #D0D0D0");
                         } else {
@@ -123,11 +124,11 @@ public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscri
         List<List<Object>> result = new ArrayList<>();
         getVisibleColumnsWithData(getVisibleLeafColumns(), columns);
 
-        result.add(columns.stream().map(column -> (((JFXTableColumn)column).getColumnName())).collect(Collectors.toList()));
+        result.add(columns.stream().map(column -> (((JFXTableColumn) column).getColumnName())).collect(Collectors.toList()));
 
-        for(T item : filteredList) {
+        for (T item : filteredList) {
             List<Object> row = new ArrayList<>();
-            for(TableColumn<T, ?> column : columns) {
+            for (TableColumn<T, ?> column : columns) {
                 row.add(column.getCellData(item));
             }
             result.add(row);
@@ -137,12 +138,12 @@ public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscri
     }
 
     private void getVisibleColumnsWithData(ObservableList<TableColumn<T, ?>> columns, List<TableColumn<T, ?>> result) {
-        for(TableColumn<T, ?> column : columns) {
-            if(!column.getColumns().isEmpty()) {
+        for (TableColumn<T, ?> column : columns) {
+            if (!column.getColumns().isEmpty()) {
                 getVisibleColumnsWithData(column.getColumns(), result);
             }
 
-            if(column instanceof JFXTableColumn) {
+            if (column instanceof JFXTableColumn) {
                 result.add(column);
             }
         }
@@ -150,7 +151,7 @@ public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscri
 
     private void setAllowFilteringColumn(List<? extends TableColumn<T, ?>> columns) {
         columns.forEach(column -> {
-            if(!column.getColumns().isEmpty()) {
+            if (!column.getColumns().isEmpty()) {
                 setAllowFilteringColumn(column.getColumns());
             }
 

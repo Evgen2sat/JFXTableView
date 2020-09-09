@@ -4,10 +4,10 @@ import em.libs.jfxtableview.JFXTableView;
 import em.libs.jfxtableview.Messages;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
 import em.libs.jfxtableview.enums.TotalTypeEnum;
-import em.libs.jfxtableview.filterFields.filterLocalTime.JFXFilterFieldLocalTimeViewImpl;
-import javafx.beans.value.ObservableValue;
 import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
+import em.libs.jfxtableview.filterFields.filterLocalTime.JFXFilterFieldLocalTimeViewImpl;
 import em.libs.jfxtableview.models.FilterTypeModel;
+import javafx.beans.value.ObservableValue;
 
 import java.time.LocalTime;
 import java.util.*;
@@ -71,18 +71,18 @@ public class JFXLocalTimeTableColumn<S> extends JFXTableColumn<S, LocalTime> {
 
     @Override
     public String getTotalText(List<TotalTypeEnum> selectedTotalTypes) {
-        if(selectedTotalTypes == null || selectedTotalTypes.isEmpty()) {
+        if (selectedTotalTypes == null || selectedTotalTypes.isEmpty()) {
             return null;
         }
 
         List<LocalTime> items = ((JFXTableView<S>) getTableView()).getFilteredList().stream().filter(item -> getCellData(item) != null).map(this::getCellData).collect(Collectors.toList());
 
-        if(items.isEmpty()) {
+        if (items.isEmpty()) {
             return null;
         }
 
         StringBuilder result = new StringBuilder();
-        for(TotalTypeEnum totalType : selectedTotalTypes) {
+        for (TotalTypeEnum totalType : selectedTotalTypes) {
             switch (totalType) {
                 case MINIMUM:
                     result
