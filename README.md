@@ -61,6 +61,7 @@ JFXTableView supports the following features:
 Create table `JFXTableView` and columns `JFXTableColumn`:
 
 ```
+//custom model for JFXTableView
 class Model {
     private SimpleBooleanProperty boolValue = new SimpleBooleanProperty();
     private SimpleDoubleProperty doubleValue = new SimpleDoubleProperty();
@@ -75,7 +76,11 @@ class Model {
     //getters and setters
 }
 
+//initialize JFXTableView
+//background is StackPane (usually this is Node on which the controls are located in the scene), which is necessary for the darkening effect when opening dialog boxes
 JFXTableView<Model> jfxTableView = new JFXTableView<>(background);
+
+//initialize JFXTableColumns
 JFXTableColumn<Model, Boolean> boolColumn = new JFXBooleanTableColumn<>("Bool value");
 boolColumn.setCellValueFactory(new PropertyValueFactory<>("boolValue"));
 
@@ -103,12 +108,12 @@ localTimeColumn.setCellValueFactory(new PropertyValueFactory<>("localTimeValue")
 JFXTableColumn<Model, String> stringColumn = new JFXStringTableColumn<>("String value");
 stringColumn.setCellValueFactory(new PropertyValueFactory<>("stringValue"));
 
-tblAnalyzes.getColumns().addAll(boolColumn, doubleColumn, floatColumn, integerColumn, longColumn,
+//add columns to JFXTableView
+jfxTableView.getColumns().addAll(boolColumn, doubleColumn, floatColumn, integerColumn, longColumn,
         localDateColumn, localDateTimeColumn, localTimeColumn, stringColumn);
 
+//initialize data
 ObservableList<Model> data = FXCollections.observableArrayList();
-tblAnalyzes.setData(data);
-
 Model row1 = new Model();
 row1.setBoolValue(true);
 row1.setDoubleValue(1);
@@ -120,6 +125,9 @@ row1.setLocalTimeValue(LocalTime.now());
 row1.setLongValue(4);
 row1.setStringValue("string");
 data.add(row1);
+
+//set data to JFXTableView
+jfxTableView.setData(data);
 ```
 
 Result:
