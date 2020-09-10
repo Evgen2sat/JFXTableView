@@ -92,9 +92,12 @@ public abstract class JFXTableColumn<S, T> extends TableColumn<S, T> {
     public final void setIsAllowFiltering(boolean value) {
         if (value) {
             JFXFilterFieldView filterFieldView = getFilterFieldView();
-            GridPane.setMargin(filterFieldView, new Insets(0, 5, 3, 0));
-            GridPane.setHgrow(filterFieldView, Priority.ALWAYS);
-            gpFilter.add(filterFieldView, 0, 0);
+
+            if(!gpFilter.getChildren().contains(filterFieldView)) {
+                GridPane.setMargin(filterFieldView, new Insets(0, 5, 3, 0));
+                GridPane.setHgrow(filterFieldView, Priority.ALWAYS);
+                gpFilter.add(filterFieldView, 0, 0);
+            }
         }
     }
 
