@@ -185,8 +185,11 @@ public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscri
         return backingList;
     }
 
-    public void setData(ObservableList<T> value) throws Exception {
+    public void setData(ObservableList<T> value) {
         this.data = value;
+
+        initItems();
+
         this.setItems(sortedControlList);
         WeakListChangeListener<? super T> itemsChangedWeakListener = new WeakListChangeListener<>(itemsChangedListener);
         value.addListener(itemsChangedWeakListener);
