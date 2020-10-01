@@ -20,32 +20,17 @@ public class JFXDateControl extends JFXDatePicker {
             public TextFormatter.Change apply(TextFormatter.Change change) {
                 if (change.isAdded()) {
                     resetValidation();
-                    if (change.getControlNewText().matches("[0-9.]*")) {
 
-                        //день не должен быть больше 31
-                        if (change.getControlNewText().length() == 2) {
-                            if (Integer.parseInt(change.getControlNewText().substring(0, 2)) > 31) {
-                                return null;
-                            }
-                            change.setText(change.getText() + ".");
-                            change.setCaretPosition(change.getControlNewText().length());
-                            change.setAnchor(change.getControlNewText().length());
-                        }
+                    if (!change.getControlNewText().matches("[0-9.]*")) {
+                        return null;
+                    }
 
-                        //месяц не может быть больше 12
-                        if (change.getControlNewText().length() == 5) {
-                            if (Integer.parseInt(change.getControlNewText().substring(3, 5)) > 12) {
-                                return null;
-                            }
-                            change.setText(change.getText() + ".");
-                            change.setCaretPosition(change.getControlNewText().length());
-                            change.setAnchor(change.getControlNewText().length());
-                        }
-                        // ограничение на ввод не более 10 симоволов дд.мм.гггг
-                        if (change.getControlNewText().length() > 10) {
-                            return null;
-                        }
-                    } else {
+                    if(change.getControlNewText().length() == 2 || change.getControlNewText().length() == 5) {
+                        change.setText(change.getText() + ".");
+                        change.setCaretPosition(change.getControlNewText().length());
+                        change.setAnchor(change.getControlNewText().length());
+                    } else if (change.getControlNewText().length() > 10 ||
+                            (change.getControlNewText().length() == 10 && !change.getControlNewText().matches("^([0-2][0-9]|[3][0-1]).([0-1]|[1][0-2]).[0-9]{4}$"))) {
                         return null;
                     }
                 }

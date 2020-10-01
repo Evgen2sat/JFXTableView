@@ -20,6 +20,11 @@ public class JFXTimeControl extends JFXTimePicker {
 
                 if (change.isAdded()) {
                     resetValidation();
+
+                    if (!change.getControlNewText().matches("[0-9:]*")) {
+                        return null;
+                    }
+
                     if(change.getControlNewText().length() == 2 && change.getControlNewText().matches("\\d*")) {
                         change.setText(change.getText() + ":");
                         change.setCaretPosition(change.getControlNewText().length());
