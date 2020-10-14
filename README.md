@@ -16,6 +16,7 @@ There are the following column implementations:
 * `JFXLocalTimeTableColumn`
 * `JFXLongTableColumn`
 * `JFXStringTableColumn`
+* `JFXBigDecimalTableColumn`
 
 You can create your own column implementation by inheriting from the abstract `JFXTableColumn` class.
 
