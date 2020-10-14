@@ -45,9 +45,7 @@ public class JFXFilterFieldFloatViewImpl<T> extends JFXFilterFieldFloatViewDesig
             return;
         }
 
-        String text = txtSearchField.getText();
-        txtSearchField.clear();
-        txtSearchField.setText(text);
+        filterItems(Float.valueOf(txtSearchField.getText()), currentFilterType, null, null);
     }
 
     @Override

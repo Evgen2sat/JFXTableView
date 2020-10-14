@@ -45,9 +45,7 @@ public class JFXFilterFieldStringViewImpl<T> extends JFXFilterFieldStringViewDes
             return;
         }
 
-        String text = txtSearchField.getText();
-        txtSearchField.clear();
-        txtSearchField.setText(text);
+        filterItems(txtSearchField.getText(), currentFilterType, null, null);
     }
 
     @Override

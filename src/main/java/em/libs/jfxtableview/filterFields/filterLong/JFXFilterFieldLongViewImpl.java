@@ -45,9 +45,7 @@ public class JFXFilterFieldLongViewImpl<T> extends JFXFilterFieldLongViewDesigne
             return;
         }
 
-        String text = txtSearchField.getText();
-        txtSearchField.clear();
-        txtSearchField.setText(text);
+        filterItems(Long.valueOf(txtSearchField.getText()), currentFilterType, null, null);
     }
 
     @Override

@@ -46,9 +46,7 @@ public class JFXFilterFieldBigDecimalViewImpl<T> extends JFXFilterFieldBigDecima
             return;
         }
 
-        String text = txtSearchField.getText();
-        txtSearchField.clear();
-        txtSearchField.setText(text);
+        filterItems(new BigDecimal(txtSearchField.getText()), currentFilterType, null, null);
     }
 
     @Override

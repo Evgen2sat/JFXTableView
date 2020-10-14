@@ -45,9 +45,7 @@ public class JFXFilterFieldIntegerViewImpl<T> extends JFXFilterFieldIntegerViewD
             return;
         }
 
-        String text = txtSearchField.getText();
-        txtSearchField.clear();
-        txtSearchField.setText(text);
+        filterItems(Integer.valueOf(txtSearchField.getText()), currentFilterType, null, null);
     }
 
     @Override
