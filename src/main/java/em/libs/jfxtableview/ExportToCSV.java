@@ -34,7 +34,7 @@ public final class ExportToCSV {
                 writer = new BufferedWriter(new FileWriter(file));
 
                 for (List<Object> item : items) {
-                    writer.write(item.stream().map(i -> i != null ? i.toString() : null).collect(Collectors.joining(";")));
+                    writer.write(item.stream().map(i -> i != null ? i.toString() : "").collect(Collectors.joining(";")));
                     writer.write("\n");
                 }
 

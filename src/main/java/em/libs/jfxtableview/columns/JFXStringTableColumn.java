@@ -62,7 +62,12 @@ public class JFXStringTableColumn<S> extends JFXTableColumn<S, String> {
             if (getCellData(item) instanceof String) {
                 values.put(getCellObservableValue(item), item);
             } else {
-                SimpleStringProperty simpleStringProperty = new SimpleStringProperty(((Object) getCellData(item)).toString());
+                SimpleStringProperty simpleStringProperty;
+                if(getCellData(item) == null) {
+                    simpleStringProperty = new SimpleStringProperty("");
+                } else {
+                    simpleStringProperty = new SimpleStringProperty(((Object) getCellData(item)).toString());
+                }
                 values.put(simpleStringProperty, item);
             }
         });
