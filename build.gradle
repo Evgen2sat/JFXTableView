@@ -10,29 +10,6 @@ sourceCompatibility = 1.11
 targetCompatibility = 1.11
 compileJava.options.encoding = 'UTF-8'
 
-apply plugin: 'maven-publish'
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            artifact("build/libs/JFXTableView-$version" + ".jar") {
-                extension 'jar'
-            }
-        }
-    }
-
-    repositories {
-        maven {
-            name 'quasar'
-            url "https://nexus.medsoft.su/repository/quasar/"
-            credentials {
-                username project.repoUser
-                password project.repoPassword
-            }
-        }
-    }
-}
-
 repositories {
     mavenCentral()
 }
