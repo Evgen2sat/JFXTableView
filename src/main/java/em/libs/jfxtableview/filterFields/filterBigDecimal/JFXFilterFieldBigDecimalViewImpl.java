@@ -104,9 +104,9 @@ public class JFXFilterFieldBigDecimalViewImpl<T> extends JFXFilterFieldBigDecima
 
         switch (filterType) {
             case EQUALS:
-                return item.equals(filterValue);
+                return item.compareTo(filterValue) == 0;
             case NOT_EQUALS:
-                return !item.equals(filterValue);
+                return item.compareTo(filterValue) != 0;
             case GREATHER_EQUALS_THAN:
                 return item.compareTo(filterValue) >= 0;
             case GREATHER_THAN:

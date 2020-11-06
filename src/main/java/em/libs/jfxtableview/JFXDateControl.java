@@ -19,8 +19,6 @@ public class JFXDateControl extends JFXDatePicker {
             @Override
             public TextFormatter.Change apply(TextFormatter.Change change) {
                 if (change.isAdded()) {
-                    resetValidation();
-
                     if (!change.getControlNewText().matches("[0-9.]*")) {
                         return null;
                     }
@@ -29,6 +27,7 @@ public class JFXDateControl extends JFXDatePicker {
                         change.setText(change.getText() + ".");
                         change.setCaretPosition(change.getControlNewText().length());
                         change.setAnchor(change.getControlNewText().length());
+                        validate();
                     } else if (change.getControlNewText().length() > 10 ||
                             (change.getControlNewText().length() == 10 && !change.getControlNewText().matches("^([0-2][0-9]|[3][0-1]).([0-1]|[1][0-2]).[0-9]{4}$"))) {
                         return null;

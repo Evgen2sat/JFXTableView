@@ -19,8 +19,6 @@ public class JFXTimeControl extends JFXTimePicker {
             public TextFormatter.Change apply(TextFormatter.Change change) {
 
                 if (change.isAdded()) {
-                    resetValidation();
-
                     if (!change.getControlNewText().matches("[0-9:]*")) {
                         return null;
                     }
@@ -29,6 +27,7 @@ public class JFXTimeControl extends JFXTimePicker {
                         change.setText(change.getText() + ":");
                         change.setCaretPosition(change.getControlNewText().length());
                         change.setAnchor(change.getControlNewText().length());
+                        validate();
                     } else if (change.getControlNewText().length() > 5 ||
                             (change.getControlNewText().length() == 5 && !change.getControlNewText().matches("([0-1][0-9]|[2][0-3]):([0-5][0-9])"))) {
                         return null;
