@@ -30,6 +30,7 @@ import java.util.stream.Collectors;
 public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscribe<String> {
     private StackPane background = null;
     private boolean allowFiltering = true;
+    private boolean visibleExportColumn = false;
     private ObservableEmitter<String> stringEmitter;
     private final Observable<String> stringObservable;
     private JFXIconButton btnExportToCSV;
@@ -64,13 +65,12 @@ public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscri
 
     private void init(StackPane background) {
         this.background = background;
-        initActionColumns();
 
         WeakListChangeListener<? super TableColumn<T, ?>> tableColumnWeakListChangeListener = new WeakListChangeListener<>(tableColumnListChangeListener);
         this.getColumns().addListener(tableColumnWeakListChangeListener);
     }
 
-    private void initActionColumns() {
+    private void initExportColumn() {
         TableColumn<T, Integer> clmnExportToCSV = new TableColumn<>();
         clmnExportToCSV.setMinWidth(50);
         clmnExportToCSV.setPrefWidth(50);
@@ -241,5 +241,12 @@ public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscri
 
     public void setExportDataAction(EventHandler<ActionEvent> action) {
         btnExportToCSV.setOnAction(action);
+    }
+
+    public void setVisibleExportColumn() {
+        if(!visibleExportColumn) {
+            initExportColumn();
+            visibleExportColumn = true;
+        }
     }
 }

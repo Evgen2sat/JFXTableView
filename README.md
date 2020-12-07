@@ -143,7 +143,14 @@ Without shadow:
 ![Without Shadow](https://i.imgur.com/a2lTXLb.jpg)
 
 ## Export to file
-First column have export to file button. By default export data to CSV file, but you can write your own implementation and pass a reference to the method in `jfxTableView.setExportDataAction` (To get data from the table use the `jfxTableView.getDataForExport()` method).
+First column have export to file button. Unvisible by default, use setVisibleExportColumn method for table.
+
+```
+//set visible export column with numbered rows for JFXTableView
+jfxTableView.setVisibleExportColumn();
+```
+
+By default export data to CSV file, but you can write your own implementation and pass a reference to the method in `jfxTableView.setExportDataAction` (To get data from the table use the `jfxTableView.getDataForExport()` method).
 
 ## Localization and internationalization
 For localization and internationalization use Resource bundle `message`. Available by default `en` and `ru_RU`.
