@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static em.libs.jfxtableview.Constants.EQUALS_ICON;
 import static em.libs.jfxtableview.Constants.SETTING_FILTERING_ICON;
 
 public class JFXFilterFieldLocalTimeViewImpl<T> extends JFXFilterFieldLocalTimeViewDesigner {
@@ -47,6 +48,17 @@ public class JFXFilterFieldLocalTimeViewImpl<T> extends JFXFilterFieldLocalTimeV
         LocalTime value = tpSearchField.getValue();
         tpSearchField.setValue(null);
         tpSearchField.setValue(value);
+    }
+
+    @Override
+    public void clearFilter() {
+        if(currentFilterType == FilterTypeEnum.SETTING_FILTERING) {
+            applyChangeFilterType(EQUALS_ICON, Messages.getString("EQUALS"), FilterTypeEnum.EQUALS, null, null);
+
+            return;
+        }
+
+        tpSearchField.setValue(null);
     }
 
     @Override

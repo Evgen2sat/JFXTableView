@@ -20,6 +20,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static em.libs.jfxtableview.Constants.CONTAINS_ICON;
 import static em.libs.jfxtableview.Constants.SETTING_FILTERING_ICON;
 
 public class JFXFilterFieldStringViewImpl<T> extends JFXFilterFieldStringViewDesigner {
@@ -45,7 +46,18 @@ public class JFXFilterFieldStringViewImpl<T> extends JFXFilterFieldStringViewDes
             return;
         }
 
-        filterItems(txtSearchField.getText(), currentFilterType, null, null);
+        txtSearchField.setText(null);
+    }
+
+    @Override
+    public void clearFilter() {
+        if(currentFilterType == FilterTypeEnum.SETTING_FILTERING) {
+            applyChangeFilterType(CONTAINS_ICON, Messages.getString("CONTAINS"), FilterTypeEnum.CONTAINS, null, null);
+
+            return;
+        }
+
+        txtSearchField.setText(null);
     }
 
     @Override

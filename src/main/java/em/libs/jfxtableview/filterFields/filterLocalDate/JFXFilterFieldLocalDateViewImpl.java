@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static em.libs.jfxtableview.Constants.EQUALS_ICON;
 import static em.libs.jfxtableview.Constants.SETTING_FILTERING_ICON;
 
 public class JFXFilterFieldLocalDateViewImpl<T> extends JFXFilterFieldLocalDateViewDesigner {
@@ -47,6 +48,17 @@ public class JFXFilterFieldLocalDateViewImpl<T> extends JFXFilterFieldLocalDateV
         LocalDate value = dpSearchField.getValue();
         dpSearchField.setValue(null);
         dpSearchField.setValue(value);
+    }
+
+    @Override
+    public void clearFilter() {
+        if(currentFilterType == FilterTypeEnum.SETTING_FILTERING) {
+            applyChangeFilterType(EQUALS_ICON, Messages.getString("EQUALS"), FilterTypeEnum.EQUALS, null, null);
+
+            return;
+        }
+
+        dpSearchField.setValue(null);
     }
 
     @Override

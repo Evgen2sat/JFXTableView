@@ -19,4 +19,6 @@ public class Constants {
     public final static String ADD_ICON = "\uF067";
     public final static String DELETE_ICON = "\uF2ED";
     public final static String CHANGE_FILTER_TYPE_ICON = "\uF52C";
+    public final static String MENU_ICON = "\uF0C9";
+    public final static String EXPORT_ICON = "\uF56D";
 }

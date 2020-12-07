@@ -1,5 +1,7 @@
 package em.libs.jfxtableview;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPopup;
 import em.libs.jfxtableview.columns.JFXTableColumn;
 import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
 import em.libs.jfxtableview.font.FontAwesome;
@@ -16,10 +18,8 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.Cursor;
+import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
@@ -27,15 +27,22 @@ import javafx.util.Callback;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static em.libs.jfxtableview.Constants.EXPORT_ICON;
+import static em.libs.jfxtableview.Constants.MENU_ICON;
+
 public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscribe<String> {
     private StackPane background = null;
     private boolean allowFiltering = true;
-    private boolean visibleExportColumn = false;
+    private boolean visibleNumberedRowsColumn = false;
     private ObservableEmitter<String> stringEmitter;
     private final Observable<String> stringObservable;
-    private JFXIconButton btnExportToCSV;
     private Label lblCountRows;
     private Label lblAmount;
+    private JFXPopup popupActions;
+    private TableColumn clmnActions;
+    private VBox vBoxActions;
+    private ScrollPane srlpPopup;
+    private JFXButton btnExport;
 
     private ObservableList<T> data;
     private ObservableList<T> backingList = FXCollections.observableArrayList();
@@ -68,15 +75,93 @@ public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscri
     private void init(StackPane background) {
         this.background = background;
 
+        initActionColumn();
+
         WeakListChangeListener<? super TableColumn<T, ?>> tableColumnWeakListChangeListener = new WeakListChangeListener<>(tableColumnListChangeListener);
         this.getColumns().addListener(tableColumnWeakListChangeListener);
     }
 
-    private void initExportColumn() {
-        TableColumn<T, Integer> clmnExportToCSV = new TableColumn<>();
-        clmnExportToCSV.setMinWidth(50);
-        clmnExportToCSV.setPrefWidth(50);
-        clmnExportToCSV.setCellFactory(new Callback<TableColumn<T, Integer>, TableCell<T, Integer>>() {
+    private void initActionColumn() {
+        clmnActions = new TableColumn();
+        clmnActions.setMinWidth(30);
+        clmnActions.setPrefWidth(30);
+        clmnActions.setMaxWidth(30);
+        clmnActions.setReorderable(false);
+        clmnActions.setSortable(false);
+
+        initPopupActions();
+        initLblActions();
+
+        this.getColumns().add(0, clmnActions);
+    }
+
+    private void initLblActions() {
+        Label lblActions = new Label(MENU_ICON);
+        lblActions.setFont(new FontAwesome().getFontSolid());
+        lblActions.setTooltip(new Tooltip(Messages.getString("SHOW_ACTIONS")));
+        lblActions.setStyle("-fx-text-fill: -primary-color;");
+        lblActions.setCursor(Cursor.HAND);
+        lblActions.setOnMouseClicked(event -> {
+            popupActions.show(lblActions);
+        });
+
+        clmnActions.setGraphic(lblActions);
+    }
+
+    private void initPopupActions() {
+        popupActions = new JFXPopup();
+
+        srlpPopup();
+    }
+
+    private void srlpPopup() {
+        srlpPopup = new ScrollPane();
+        srlpPopup.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+        initVboxActions();
+
+        popupActions.setPopupContent(srlpPopup);
+    }
+
+    private void initVboxActions() {
+        vBoxActions = new VBox();
+        vBoxActions.setSpacing(10);
+        vBoxActions.setMaxHeight(200);
+        vBoxActions.setPrefWidth(200);
+
+        JFXButton btnClearFilters = new JFXButton(Messages.getString("CLEAR_FILTERS"));
+        btnClearFilters.setPrefWidth(200);
+        btnClearFilters.setAlignment(Pos.CENTER_LEFT);
+        btnClearFilters.getStyleClass().add("jfx-without-radius-button");
+        btnClearFilters.setOnAction(event -> {
+            popupActions.hide();
+            for (var entry : filteredFieldByColumns.entrySet()) {
+                entry.getValue().clearFilter();
+            }
+        });
+        vBoxActions.getChildren().add(btnClearFilters);
+
+        btnExport = new JFXButton(Messages.getString("EXPORT_DATA"));
+        btnExport.setPrefWidth(200);
+        btnExport.setAlignment(Pos.CENTER_LEFT);
+        btnExport.getStyleClass().add("jfx-without-radius-button");
+        btnExport.setOnAction(event -> {
+            try {
+                ExportToCSV.writeExcel(getDataForExport());
+            } catch (Exception e) {
+                stringEmitter.onNext(Messages.getString("EXPORT_TO_CSV_ERROR") + ": " + e.getMessage());
+            }
+        });
+        vBoxActions.getChildren().add(btnExport);
+
+        srlpPopup.setContent(vBoxActions);
+    }
+
+    private void initNumberedRowsColumn() {
+        TableColumn<T, Integer> clmnNumberedRows = new TableColumn<>();
+        clmnNumberedRows.setMinWidth(50);
+        clmnNumberedRows.setPrefWidth(50);
+        clmnNumberedRows.setCellFactory(new Callback<TableColumn<T, Integer>, TableCell<T, Integer>>() {
             @Override
             public TableCell<T, Integer> call(TableColumn<T, Integer> param) {
                 return new TableCell<>() {
@@ -98,17 +183,6 @@ public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscri
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
 
-        btnExportToCSV = new JFXIconButton("\uF56D", new FontAwesome().getFontSolid(), Messages.getString("EXPORT_DATA"));
-        btnExportToCSV.getStyleClass().add("jfx-without-radius-button");
-        btnExportToCSV.setOnAction(event -> {
-            try {
-                ExportToCSV.writeExcel(getDataForExport());
-            } catch (Exception e) {
-                stringEmitter.onNext(Messages.getString("EXPORT_TO_CSV_ERROR") + ": " + e.getMessage());
-            }
-        });
-        vBox.getChildren().add(btnExportToCSV);
-
         lblCountRows = new Label();
         lblAmount = new Label();
 
@@ -118,9 +192,9 @@ public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscri
         vBox.getChildren().add(lblAmount);
         vBox.getChildren().add(lblCountRows);
 
-        clmnExportToCSV.setGraphic(vBox);
+        clmnNumberedRows.setGraphic(vBox);
 
-        this.getColumns().add(0, clmnExportToCSV);
+        this.getColumns().add(0, clmnNumberedRows);
     }
 
     public List<List<Object>> getDataForExport() {
@@ -244,13 +318,13 @@ public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscri
     }
 
     public void setExportDataAction(EventHandler<ActionEvent> action) {
-        btnExportToCSV.setOnAction(action);
+        btnExport.setOnAction(action);
     }
 
-    public void setVisibleExportColumn() {
-        if(!visibleExportColumn) {
-            initExportColumn();
-            visibleExportColumn = true;
+    public void setVisibleNumberedRowsColumn() {
+        if (!visibleNumberedRowsColumn) {
+            initNumberedRowsColumn();
+            visibleNumberedRowsColumn = true;
         }
     }
 }

@@ -37,6 +37,11 @@ public class JFXFilterFieldBooleanViewImpl<T> extends JFXFilterFieldBooleanViewD
     }
 
     @Override
+    public void clearFilter() {
+        chbFilter.getSelectionModel().select(CheckBoxFilterEnum.ALL);
+    }
+
+    @Override
     protected void chbFilter_onSelectedChanged(ObservableValue<? extends CheckBoxFilterEnum> observable, CheckBoxFilterEnum oldValue, CheckBoxFilterEnum newValue) {
         Set<T> collect = column.getValues().entrySet().stream().filter(observableValueTEntry -> {
             return observableValueTEntry.getKey() == null ||

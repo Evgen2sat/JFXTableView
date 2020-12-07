@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static em.libs.jfxtableview.Constants.SETTING_FILTERING_ICON;
+import static em.libs.jfxtableview.Constants.*;
 
 public class JFXFilterFieldBigDecimalViewImpl<T> extends JFXFilterFieldBigDecimalViewDesigner {
 
@@ -47,6 +47,17 @@ public class JFXFilterFieldBigDecimalViewImpl<T> extends JFXFilterFieldBigDecima
         }
 
         filterItems(new BigDecimal(txtSearchField.getText()), currentFilterType, null, null);
+    }
+
+    @Override
+    public void clearFilter() {
+        if(currentFilterType == FilterTypeEnum.SETTING_FILTERING) {
+            applyChangeFilterType(EQUALS_ICON, Messages.getString("EQUALS"), FilterTypeEnum.EQUALS, null, null);
+
+            return;
+        }
+
+        txtSearchField.setText(null);
     }
 
     @Override

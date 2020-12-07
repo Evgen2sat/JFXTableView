@@ -4,4 +4,6 @@ import javafx.scene.layout.StackPane;
 
 public abstract class JFXFilterFieldView extends StackPane {
     public abstract void updateFilterField();
+
+    public abstract void clearFilter();
 }

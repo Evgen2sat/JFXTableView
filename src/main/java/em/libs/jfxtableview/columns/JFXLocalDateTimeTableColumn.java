@@ -28,6 +28,7 @@ public class JFXLocalDateTimeTableColumn<S> extends JFXTableColumn<S, LocalDateT
 
     public JFXLocalDateTimeTableColumn(String text) {
         super(text, param -> new JFXDefaultTableCell<S, LocalDateTime>().call((JFXTableColumn<S, LocalDateTime>)param));
+        this.setMinWidth(200);
         initTotalRow();
     }
 
