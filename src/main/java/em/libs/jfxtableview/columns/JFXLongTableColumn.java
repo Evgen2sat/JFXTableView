@@ -2,6 +2,7 @@ package em.libs.jfxtableview.columns;
 
 import em.libs.jfxtableview.JFXTableView;
 import em.libs.jfxtableview.Messages;
+import em.libs.jfxtableview.cellFactories.JFXDefaultTableCell;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
 import em.libs.jfxtableview.enums.TotalTypeEnum;
 import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
@@ -24,7 +25,7 @@ public class JFXLongTableColumn<S> extends JFXTableColumn<S, Long> {
     }
 
     public JFXLongTableColumn(String text) {
-        super(text);
+        super(text, param -> new JFXDefaultTableCell<S, Long>().call((JFXTableColumn<S, Long>)param));
         initTotalRow();
     }
 

@@ -2,6 +2,7 @@ package em.libs.jfxtableview.columns;
 
 import em.libs.jfxtableview.JFXTableView;
 import em.libs.jfxtableview.Messages;
+import em.libs.jfxtableview.cellFactories.JFXDefaultTableCell;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
 import em.libs.jfxtableview.enums.TotalTypeEnum;
 import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
@@ -26,7 +27,7 @@ public class JFXLocalDateTimeTableColumn<S> extends JFXTableColumn<S, LocalDateT
     }
 
     public JFXLocalDateTimeTableColumn(String text) {
-        super(text);
+        super(text, param -> new JFXDefaultTableCell<S, LocalDateTime>().call((JFXTableColumn<S, LocalDateTime>)param));
         initTotalRow();
     }
 

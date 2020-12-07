@@ -1,6 +1,7 @@
 package em.libs.jfxtableview.columns;
 
 import em.libs.jfxtableview.JFXTableView;
+import em.libs.jfxtableview.cellFactories.JFXCheckBoxTableCellFactory;
 import em.libs.jfxtableview.enums.TotalTypeEnum;
 import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
 import em.libs.jfxtableview.filterFields.filterBoolean.JFXFilterFieldBooleanViewImpl;
@@ -17,11 +18,11 @@ public class JFXBooleanTableColumn<S> extends JFXTableColumn<S, Boolean> {
     private JFXFilterFieldView filterFieldView;
 
     public JFXBooleanTableColumn() {
-        super();
+        this(null);
     }
 
     public JFXBooleanTableColumn(String text) {
-        super(text);
+        super(text, param -> new JFXCheckBoxTableCellFactory<S, Boolean>().call((JFXTableColumn<S, Boolean>) param));
     }
 
     @Override

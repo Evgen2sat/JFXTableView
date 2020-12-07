@@ -19,8 +19,10 @@ import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.layout.*;
+import javafx.util.Callback;
 
 import java.util.List;
 import java.util.Map;
@@ -41,18 +43,18 @@ public abstract class JFXTableColumn<S, T> extends TableColumn<S, T> {
         setTotalText(getTotalText(totalFieldTableColumnView.getSelectedTotalTypes()));
     };
 
-    public JFXTableColumn() {
-        this(null);
+    public JFXTableColumn(Callback<TableColumn<S,T>, TableCell<S,T>> callback) {
+        this(null, callback);
     }
 
-    public JFXTableColumn(String text) {
+    public JFXTableColumn(String text, Callback<TableColumn<S,T>, TableCell<S,T>> callback) {
         super();
-        init(text);
+        init(text, callback);
     }
 
-    private void init(String text) {
+    private void init(String text, Callback<TableColumn<S,T>, TableCell<S,T>> callback) {
         this.columnName = text;
-        initCell();
+        initCell(callback);
         initFilterField(text);
     }
 
@@ -85,8 +87,8 @@ public abstract class JFXTableColumn<S, T> extends TableColumn<S, T> {
         setGraphic(vBoxFilterField);
     }
 
-    private void initCell() {
-        setCellFactory(param -> new JFXDefaultTableCell<S, T>().call(this));
+    private void initCell(Callback<TableColumn<S,T>, TableCell<S,T>> callback) {
+        setCellFactory(callback);
     }
 
     public final void setIsAllowFiltering(boolean value) {

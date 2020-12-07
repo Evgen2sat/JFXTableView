@@ -2,6 +2,7 @@ package em.libs.jfxtableview.columns;
 
 import em.libs.jfxtableview.JFXTableView;
 import em.libs.jfxtableview.Messages;
+import em.libs.jfxtableview.cellFactories.JFXDefaultTableCell;
 import em.libs.jfxtableview.enums.FilterTypeEnum;
 import em.libs.jfxtableview.enums.TotalTypeEnum;
 import em.libs.jfxtableview.filterFields.JFXFilterFieldView;
@@ -39,7 +40,7 @@ public class JFXBigDecimalTableColumn<S> extends JFXTableColumn<S, BigDecimal> {
      * @param roundingMode - the rounding mode to be returned in average and sum total
      */
     public JFXBigDecimalTableColumn(String text, int scale, RoundingMode roundingMode) {
-        super(text);
+        super(text, param -> new JFXDefaultTableCell<S, BigDecimal>().call((JFXTableColumn<S, BigDecimal>)param));
         this.scale = scale;
         this.roundingMode = roundingMode;
         initTotalRow();
