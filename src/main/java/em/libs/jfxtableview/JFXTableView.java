@@ -35,6 +35,7 @@ public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscri
     private final Observable<String> stringObservable;
     private JFXIconButton btnExportToCSV;
     private Label lblCountRows;
+    private Label lblAmount;
 
     private ObservableList<T> data;
     private ObservableList<T> backingList = FXCollections.observableArrayList();
@@ -54,7 +55,8 @@ public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscri
     };
 
     private final ListChangeListener<? super T> filteredListChangeListener = lc -> {
-        lblCountRows.setText(Messages.getString("AMOUNT") + ": " + filteredList.size());
+        lblAmount.setText(Messages.getString("AMOUNT"));
+        lblCountRows.setText(String.valueOf(filteredList.size()));
     };
 
     public JFXTableView(StackPane background) {
@@ -108,10 +110,12 @@ public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscri
         vBox.getChildren().add(btnExportToCSV);
 
         lblCountRows = new Label();
+        lblAmount = new Label();
 
         WeakListChangeListener<? super T> filteredListWeakChangeListener = new WeakListChangeListener<>(filteredListChangeListener);
         filteredList.addListener(filteredListWeakChangeListener);
 
+        vBox.getChildren().add(lblAmount);
         vBox.getChildren().add(lblCountRows);
 
         clmnExportToCSV.setGraphic(vBox);
