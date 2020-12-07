@@ -25,8 +25,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.List;
 
-import static em.libs.jfxtableview.Constants.CLOSE_ICON;
-import static em.libs.jfxtableview.Constants.ERROR_ICON;
+import static em.libs.jfxtableview.Constants.*;
 
 public abstract class JFXFilterFieldStringViewDesigner extends JFXFilterFieldView {
 
@@ -155,7 +154,7 @@ public abstract class JFXFilterFieldStringViewDesigner extends JFXFilterFieldVie
     }
 
     private void initBtnChangeFilterType() {
-        btnChangeFilterType = new JFXIconButton("\uF52C", new FontAwesome(12).getFontSolid(), Messages.getString("EQUALS"));
+        btnChangeFilterType = new JFXIconButton(CONTAINS_ICON, new FontAwesome(12).getFontSolid(), Messages.getString("CONTAINS"));
         btnChangeFilterType.getStyleClass().add("jfx-without-radius-button");
         btnChangeFilterType.setOnAction(this::btnSettingsFilter_onAction);
         HBox.setMargin(btnChangeFilterType, new Insets(3));

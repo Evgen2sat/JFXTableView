@@ -25,7 +25,7 @@ import static em.libs.jfxtableview.Constants.SETTING_FILTERING_ICON;
 public class JFXFilterFieldStringViewImpl<T> extends JFXFilterFieldStringViewDesigner {
 
     private JFXStringTableColumn<T> column;
-    private FilterTypeEnum currentFilterType = FilterTypeEnum.EQUALS;
+    private FilterTypeEnum currentFilterType = FilterTypeEnum.CONTAINS;
     private JFXSimpleDialogBox dialogBox;
     private JFXSettingFilterStringViewImpl settingFilterView;
 
