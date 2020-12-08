@@ -142,13 +142,16 @@ Without shadow:
 
 ![Without Shadow](https://i.imgur.com/a2lTXLb.jpg)
 
-## Export to file
-First column have export to file button. Unvisible by default, use setVisibleExportColumn method for table.
+## Numbered rows
+First column used for display numbered rows. Unvisible by default, use setVisibleNumberedRowsColumn method for table.
 
 ```
-//set visible export column with numbered rows for JFXTableView
-jfxTableView.setVisibleExportColumn();
+//set visible numbered rows column for JFXTableView
+jfxTableView.setVisibleNumberedRowsColumn();
 ```
+
+## Export to file
+First (or second if numbered rows visible) column have burger menu button. Use popup action for export data to file.
 
 By default export data to CSV file, but you can write your own implementation and pass a reference to the method in `jfxTableView.setExportDataAction` (To get data from the table use the `jfxTableView.getDataForExport()` method).
 
