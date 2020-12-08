@@ -42,7 +42,7 @@ public class JFXDefaultTableCell<S, T> implements Callback<JFXTableColumn<S, T>,
                     if (param instanceof JFXLocalDateTableColumn) {
                         resultText = LocalDate.parse(item.toString()).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
                     } else if (param instanceof JFXLocalDateTimeTableColumn) {
-                        resultText = LocalDateTime.parse(item.toString()).format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"));
+                        resultText = LocalDateTime.parse(item.toString()).format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
                     } else {
                         resultText = item.toString();
                     }

@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -109,17 +110,17 @@ public class JFXFilterFieldLocalDateTimeViewImpl<T> extends JFXFilterFieldLocalD
 
         switch (filterType) {
             case EQUALS:
-                return item.equals(filterValue);
+                return item.truncatedTo(ChronoUnit.MINUTES).equals(filterValue);
             case NOT_EQUALS:
-                return !item.equals(filterValue);
+                return !item.truncatedTo(ChronoUnit.MINUTES).equals(filterValue);
             case GREATHER_EQUALS_THAN:
-                return item.compareTo(filterValue) >= 0;
+                return item.truncatedTo(ChronoUnit.MINUTES).compareTo(filterValue) >= 0;
             case GREATHER_THAN:
-                return item.compareTo(filterValue) > 0;
+                return item.truncatedTo(ChronoUnit.MINUTES).compareTo(filterValue) > 0;
             case LESS_EQUALS_THAN:
-                return item.compareTo(filterValue) <= 0;
+                return item.truncatedTo(ChronoUnit.MINUTES).compareTo(filterValue) <= 0;
             case LESS_THAN:
-                return item.compareTo(filterValue) < 0;
+                return item.truncatedTo(ChronoUnit.MINUTES).compareTo(filterValue) < 0;
             case SETTING_FILTERING:
                 return applySettingFilter(item, filterMode, filterValues);
             default:
