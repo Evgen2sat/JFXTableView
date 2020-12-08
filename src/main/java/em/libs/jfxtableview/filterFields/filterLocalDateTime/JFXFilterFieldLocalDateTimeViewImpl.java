@@ -57,7 +57,7 @@ public class JFXFilterFieldLocalDateTimeViewImpl<T> extends JFXFilterFieldLocalD
 
     @Override
     public void clearFilter() {
-        if(currentFilterType == FilterTypeEnum.SETTING_FILTERING) {
+        if (currentFilterType == FilterTypeEnum.SETTING_FILTERING) {
             applyChangeFilterType(EQUALS_ICON, Messages.getString("EQUALS"), FilterTypeEnum.EQUALS, null, null);
 
             return;
@@ -85,9 +85,13 @@ public class JFXFilterFieldLocalDateTimeViewImpl<T> extends JFXFilterFieldLocalD
 
     private void filterItems(LocalDateTime filterValue, FilterTypeEnum filterType, FilterModeEnum filterMode, List<FilterModel> filterValues) {
         Set<T> collect = column.getValues().entrySet().stream().filter(observableValueTEntry -> {
-            return observableValueTEntry.getKey() == null ||
-                    observableValueTEntry.getKey().getValue() == null ||
-                    applyFilter(observableValueTEntry.getKey().getValue(), filterValue, filterType, filterMode, filterValues);
+            LocalDateTime cellValue = null;
+
+            if (observableValueTEntry.getKey() != null && observableValueTEntry.getKey().getValue() != null) {
+                cellValue = observableValueTEntry.getKey().getValue();
+            }
+
+            return applyFilter(cellValue, filterValue, filterType, filterMode, filterValues);
         }).map(Map.Entry::getValue).collect(Collectors.toSet());
 
         ((JFXTableView<T>) (column.getTableView())).setFilteredItem(collect, column, this);
@@ -97,6 +101,10 @@ public class JFXFilterFieldLocalDateTimeViewImpl<T> extends JFXFilterFieldLocalD
         if ((filterType != FilterTypeEnum.SETTING_FILTERING && filterValue == null)
                 || (filterType == FilterTypeEnum.SETTING_FILTERING && (filterValues == null || filterValues.isEmpty()))) {
             return true;
+        }
+
+        if (item == null) {
+            return false;
         }
 
         switch (filterType) {

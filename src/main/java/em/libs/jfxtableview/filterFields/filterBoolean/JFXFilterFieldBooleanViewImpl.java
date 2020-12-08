@@ -44,9 +44,13 @@ public class JFXFilterFieldBooleanViewImpl<T> extends JFXFilterFieldBooleanViewD
     @Override
     protected void chbFilter_onSelectedChanged(ObservableValue<? extends CheckBoxFilterEnum> observable, CheckBoxFilterEnum oldValue, CheckBoxFilterEnum newValue) {
         Set<T> collect = column.getValues().entrySet().stream().filter(observableValueTEntry -> {
-            return observableValueTEntry.getKey() == null ||
-                    observableValueTEntry.getKey().getValue() == null ||
-                    applyFilter(observableValueTEntry.getKey().getValue(), newValue);
+            Boolean cellValue = null;
+
+            if (observableValueTEntry.getKey() != null && observableValueTEntry.getKey().getValue() != null) {
+                cellValue = observableValueTEntry.getKey().getValue();
+            }
+
+            return applyFilter(cellValue, newValue);
         }).map(Map.Entry::getValue).collect(Collectors.toSet());
 
         ((JFXTableView<T>) (column.getTableView())).setFilteredItem(collect, column, this);
@@ -55,6 +59,10 @@ public class JFXFilterFieldBooleanViewImpl<T> extends JFXFilterFieldBooleanViewD
     private boolean applyFilter(Boolean item, CheckBoxFilterEnum filterValue) {
         if (filterValue == null) {
             return true;
+        }
+
+        if(item == null) {
+            return false;
         }
 
         switch (filterValue) {

@@ -99,9 +99,13 @@ public class JFXFilterFieldLongViewImpl<T> extends JFXFilterFieldLongViewDesigne
     private void filterItems(Long filterValue, FilterTypeEnum filterType, FilterModeEnum filterMode, List<FilterModel> filterValues) {
         clearError();
         Set<T> collect = column.getValues().entrySet().stream().filter(observableValueTEntry -> {
-            return observableValueTEntry.getKey() == null ||
-                    observableValueTEntry.getKey().getValue() == null ||
-                    applyFilter(observableValueTEntry.getKey().getValue(), filterValue, filterType, filterMode, filterValues);
+            Long cellValue = null;
+
+            if (observableValueTEntry.getKey() != null && observableValueTEntry.getKey().getValue() != null) {
+                cellValue = observableValueTEntry.getKey().getValue();
+            }
+
+            return applyFilter(cellValue, filterValue, filterType, filterMode, filterValues);
         }).map(Map.Entry::getValue).collect(Collectors.toSet());
 
         ((JFXTableView<T>) (column.getTableView())).setFilteredItem(collect, column, this);
@@ -111,6 +115,10 @@ public class JFXFilterFieldLongViewImpl<T> extends JFXFilterFieldLongViewDesigne
         if ((filterType != FilterTypeEnum.SETTING_FILTERING && filterValue == null)
                 || (filterType == FilterTypeEnum.SETTING_FILTERING && (filterValues == null || filterValues.isEmpty()))) {
             return true;
+        }
+
+        if(item == null) {
+            return false;
         }
 
         switch (filterType) {
