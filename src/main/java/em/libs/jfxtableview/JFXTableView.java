@@ -83,9 +83,9 @@ public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscri
 
     private void initActionColumn() {
         clmnActions = new TableColumn();
-        clmnActions.setMinWidth(30);
-        clmnActions.setPrefWidth(30);
-        clmnActions.setMaxWidth(30);
+        clmnActions.setMinWidth(40);
+        clmnActions.setPrefWidth(40);
+        clmnActions.setMaxWidth(40);
         clmnActions.setReorderable(false);
         clmnActions.setSortable(false);
 
@@ -96,16 +96,24 @@ public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscri
     }
 
     private void initLblActions() {
-        Label lblActions = new Label(MENU_ICON);
-        lblActions.setFont(new FontAwesome().getFontSolid());
-        lblActions.setTooltip(new Tooltip(Messages.getString("SHOW_ACTIONS")));
-        lblActions.setStyle("-fx-text-fill: -primary-color;");
-        lblActions.setCursor(Cursor.HAND);
-        lblActions.setOnMouseClicked(event -> {
-            popupActions.show(lblActions);
+//        Label lblActions = new Label(MENU_ICON);
+//        lblActions.setFont(new FontAwesome().getFontSolid());
+//        lblActions.setTooltip(new Tooltip(Messages.getString("SHOW_ACTIONS")));
+//        lblActions.setStyle("-fx-text-fill: -primary-color;");
+//        lblActions.setCursor(Cursor.HAND);
+//        lblActions.setOnMouseClicked(event -> {
+//            popupActions.show(lblActions);
+//        });
+
+//        clmnActions.setGraphic(lblActions);
+
+        JFXIconButton btnActions = new JFXIconButton(MENU_ICON, new FontAwesome().getFontSolid(), Messages.getString("SHOW_ACTIONS"));
+        btnActions.getStyleClass().add("jfx-without-radius-button");
+        btnActions.setOnAction(event -> {
+            popupActions.show(btnActions);
         });
 
-        clmnActions.setGraphic(lblActions);
+        clmnActions.setGraphic(btnActions);
     }
 
     private void initPopupActions() {
