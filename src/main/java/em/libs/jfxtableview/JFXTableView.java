@@ -157,7 +157,9 @@ public class JFXTableView<T> extends TableView<T> implements ObservableOnSubscri
             try {
                 ExportToCSV.writeExcel(getDataForExport());
             } catch (Exception e) {
-                stringEmitter.onNext(Messages.getString("EXPORT_TO_CSV_ERROR") + ": " + e.getMessage());
+                if (stringEmitter != null) {
+                    stringEmitter.onNext(Messages.getString("EXPORT_TO_CSV_ERROR") + ": " + e.getMessage());
+                }
             }
         });
         vBoxActions.getChildren().add(btnExport);
