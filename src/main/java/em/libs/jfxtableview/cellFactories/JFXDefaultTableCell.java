@@ -63,7 +63,10 @@ public class JFXDefaultTableCell<S, T> implements Callback<JFXTableColumn<S, T>,
 
                     if (!resultText.isEmpty()) {
                         if (getTooltip() == null) {
-                            setTooltip(new Tooltip(resultText));
+                            Tooltip tooltip = new Tooltip(resultText);
+                            tooltip.setMaxWidth(500);
+                            tooltip.setWrapText(true);
+                            setTooltip(tooltip);
                         } else {
                             getTooltip().setText(resultText);
                         }
