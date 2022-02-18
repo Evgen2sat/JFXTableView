@@ -1,3 +1,5 @@
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.evgen2sat/JFXTableView/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.evgen2sat/JFXTableView)
+
 # JFXTableView
 Advanced JavaFx TableView with filtering and total functions.
 
